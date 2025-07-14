@@ -70,7 +70,7 @@ const MenuItem = ({ unit, icon, children, isOpen, onToggle }) => {
     );
 };
 
-const UnitContent = ({ title, topics }) => {
+const UnitContent = ({ title, topics, navigation, simulations }) => {
     return (
         <View style={styles.unitContent}>
             <Text style={styles.unitTitle}>{title}</Text>
@@ -80,11 +80,27 @@ const UnitContent = ({ title, topics }) => {
                     <Text style={styles.topicText}>{topic}</Text>
                 </View>
             ))}
+
+            {/* Simulaciones disponibles */}
+            {simulations && simulations.length > 0 && (
+                <View style={styles.simulationsContainer}>
+                    <Text style={styles.simulationsTitle}>🧪 Simulaciones Interactivas:</Text>
+                    {simulations.map((simulation, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            style={styles.simulationButton}
+                            onPress={() => navigation.navigate(simulation.screen)}
+                        >
+                            <Text style={styles.simulationButtonText}>{simulation.name}</Text>
+                        </TouchableOpacity>
+                    ))}
+                </View>
+            )}
         </View>
     );
 };
 
-export default function App() {
+export default function App({ navigation }) {
     const [openUnit, setOpenUnit] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -112,7 +128,8 @@ export default function App() {
                 "Densidad y peso específico de diferentes fluidos",
                 "Viscosidad cinemática y dinámica de los fluidos",
                 "Tensión superficial y capilaridad"
-            ]
+            ],
+            simulations: []
         },
         {
             unit: "Unidad 2",
@@ -126,6 +143,12 @@ export default function App() {
                 "Centro de presión y centro de gravedad",
                 "Principio de flotación y estabilidad",
                 "Metacentro y condiciones de equilibrio"
+            ],
+            simulations: [
+                {
+                    name: "Presión Hidrostática",
+                    screen: "HydrostaticPressure"
+                }
             ]
         },
         {
@@ -140,7 +163,8 @@ export default function App() {
                 "Pérdidas de energía por fricción en tuberías",
                 "Coeficiente de fricción de Darcy-Weisbach",
                 "Pérdidas menores y localizadas"
-            ]
+            ],
+            simulations: []
         },
         {
             unit: "Unidad 4",
@@ -154,7 +178,8 @@ export default function App() {
                 "Cavitación: causas, efectos y prevención",
                 "Sistemas de bombeo en serie y paralelo",
                 "Mantenimiento predictivo y correctivo"
-            ]
+            ],
+            simulations: []
         },
         {
             unit: "Unidad 5",
@@ -168,7 +193,8 @@ export default function App() {
                 "Golpe de ariete: causas y protección",
                 "Sistemas de control hidráulico",
                 "Eficiencia energética en sistemas hidráulicos"
-            ]
+            ],
+            simulations: []
         }
     ];
 
@@ -207,6 +233,8 @@ export default function App() {
                             <UnitContent
                                 title={unit.title}
                                 topics={unit.topics}
+                                navigation={navigation}
+                                simulations={unit.simulations}
                             />
                         </MenuItem>
                     ))}
@@ -346,6 +374,36 @@ const styles = StyleSheet.create({
         color: '#37474F',
         flex: 1,
         lineHeight: 20,
+    },
+    simulationsContainer: {
+        marginTop: 16,
+        paddingTop: 16,
+        borderTopWidth: 1,
+        borderTopColor: '#E0E0E0',
+    },
+    simulationsTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#0277BD',
+        marginBottom: 12,
+    },
+    simulationButton: {
+        backgroundColor: '#4CAF50',
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        borderRadius: 20,
+        marginBottom: 8,
+        alignItems: 'center',
+        elevation: 2,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+    },
+    simulationButtonText: {
+        color: '#FFFFFF',
+        fontSize: 14,
+        fontWeight: '600',
     },
     footer: {
         backgroundColor: '#0277BD',
