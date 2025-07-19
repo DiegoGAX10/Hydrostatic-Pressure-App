@@ -18,7 +18,7 @@ const CONTAINER_HEIGHT = 300;
 const WATER_DENSITY = 1000; // kg/m³
 const GRAVITY = 9.81; // m/s²
 
-const HydrostaticPressureSimulation = ({ navigation }) => {
+const HydrostaticPressureScreen = ({ navigation }) => {
     const [depth, setDepth] = useState(50); // profundidad en cm
     const [pressure, setPressure] = useState(0);
     const [waterLevel, setWaterLevel] = useState(200); // nivel de agua desde arriba
@@ -507,4 +507,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HydrostaticPressureSimulation;
+export default HydrostaticPressureScreen;
