@@ -1,6 +1,3 @@
-// screens/units/UnitTemplate.js
-// Template de prueba con contenido Lorem Ipsum
-
 import React from 'react';
 import {
     View,

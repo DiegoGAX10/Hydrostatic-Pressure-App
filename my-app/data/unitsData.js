@@ -4,17 +4,11 @@ export const unitsData = [
         id: 1,
         unit: "Unidad 1",
         icon: "💧",
-        title: "Fundamentos de la Hidráulica",
+        title: "Trivia de Hidrostática",
         screen: "Unit1",
         color: "#E3F2FD",
         topics: [
-            "Propiedades de los fluidos: densidad, viscosidad y compresibilidad",
-            "Principio de Pascal y sus aplicaciones en sistemas hidráulicos",
-            "Principio de Arquímedes y flotación de cuerpos",
-            "Presión hidrostática y variación con la profundidad",
-            "Densidad y peso específico de diferentes fluidos",
-            "Viscosidad cinemática y dinámica de los fluidos",
-            "Tensión superficial y capilaridad"
+            "Propiedades de los fluidos: densidad, viscosidad y compresibilidad"
         ],
         simulations: []
     },

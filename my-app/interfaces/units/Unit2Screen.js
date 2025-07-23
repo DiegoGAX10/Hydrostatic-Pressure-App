@@ -1,4 +1,3 @@
-// screens/units/Unit2Screen.js
 import React from 'react';
 import {
     View,
