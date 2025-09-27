@@ -10,9 +10,11 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function Unit1Screen({ navigation, route }) {
     const { unitData } = route.params;
+    const { t } = useLanguage();
 
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
@@ -24,98 +26,22 @@ export default function Unit1Screen({ navigation, route }) {
     const [matchedPairs, setMatchedPairs] = useState({});
     const [selectedConcept, setSelectedConcept] = useState(null);
 
-    // Preguntas de trivia del documento
+    // Get trivia questions from translations
+    const triviaQuestions = t('trivia.questions').map((q, index) => ({
+        question: q.question,
+        options: q.options,
+        correct: getCorrectAnswerIndex(index), // We need to maintain the correct answer indices
+        explanation: q.explanation
+    }));
 
-    const triviaQuestions = [
-        {
-            question: "¿Cuál de las siguientes NO es una propiedad física del agua?",
-            options: ["Viscosidad", "Densidad", "Tensión superficial", "Conductividad eléctrica"],
-            correct: 3,
-            explanation: "Aunque el agua puede conducir electricidad, esta no es una propiedad física fundamental que se estudie en hidráulica básica."
-        },
-        {
-            question: "¿Qué unidad se usa para medir presión en el Sistema Internacional?",
-            options: ["Newton", "Pascal", "Joule", "Watt"],
-            correct: 1,
-            explanation: "El Pascal (Pa) es igual a N/m² y es la unidad de presión en el SI."
-        },
-        {
-            question: "¿Cuál es la densidad aproximada del agua a 4°C?",
-            options: ["500 kg/m³", "1000 kg/m³", "1200 kg/m³", "980 kg/m³"],
-            correct: 1,
-            explanation: "A 4°C, el agua tiene su máxima densidad: 1000 kg/m³."
-        },
-        {
-            question: "¿Qué propiedad del fluido se relaciona con la resistencia interna al flujo?",
-            options: ["Densidad", "Viscosidad", "Peso específico", "Tensión superficial"],
-            correct: 1,
-            explanation: "La viscosidad mide la resistencia al deslizamiento entre capas del fluido."
-        },
-        {
-            question: "¿Cuál de los siguientes instrumentos se usa para medir presión?",
-            options: ["Manómetro", "Pluviómetro", "Dinamómetro", "Barómetro de mercurio"],
-            correct: 0,
-            explanation: "El manómetro es un instrumento diseñado para medir presión de fluidos confinados."
-        },
-        {
-            question: "¿Qué representa el número adimensional de Reynolds?",
-            options: ["Relación entre presión y temperatura", "Relación entre fuerzas inerciales y viscosas", "Relación entre densidad y gravedad", "Relación entre área y caudal"],
-            correct: 1,
-            explanation: "Reynolds se usa para clasificar el tipo de flujo (laminar o turbulento)."
-        },
-        {
-            question: "¿Qué sistema de unidades se basa en el metro, kilogramo y segundo?",
-            options: ["Sistema Técnico", "Sistema Inglés", "Sistema Cegesimal", "Sistema Internacional (SI)"],
-            correct: 3,
-            explanation: "El SI se basa en m, kg, s, y es el sistema estándar usado en hidráulica."
-        },
-        {
-            question: "¿Qué propiedad del agua permite que los insectos caminen sobre ella?",
-            options: ["Densidad", "Capilaridad", "Tensión superficial", "Presión hidrostática"],
-            correct: 2,
-            explanation: "La tensión superficial forma una 'película' que resiste fuerzas externas leves."
-        },
-        {
-            question: "¿Qué unidad representa el peso específico?",
-            options: ["N/m²", "kg/m³", "N/m³", "Pa·s"],
-            correct: 2,
-            explanation: "El peso específico es el peso por unidad de volumen (N/m³)."
-        },
-        {
-            question: "¿Qué propiedad física del agua se ve afectada principalmente por la temperatura?",
-            options: ["Viscosidad", "Masa", "Altura", "Área transversal"],
-            correct: 0,
-            explanation: "La viscosidad del agua disminuye a medida que la temperatura aumenta."
-        }
-    ];
+    // Helper function to get correct answer indices (same as original)
+    function getCorrectAnswerIndex(questionIndex) {
+        const correctIndices = [3, 1, 1, 1, 0, 1, 3, 2, 2, 0];
+        return correctIndices[questionIndex];
+    }
 
-    // Datos para el ejercicio de arrastrar y unir
-    const dragDropData = {
-        concepts: [
-            { id: 1, name: "Densidad" },
-            { id: 2, name: "Viscosidad" },
-            { id: 3, name: "Tensión superficial" },
-            { id: 4, name: "Presión hidrostática" },
-            { id: 5, name: "Peso específico" },
-            { id: 6, name: "Sistema Internacional" },
-            { id: 7, name: "Manómetro" },
-            { id: 8, name: "Fluido" },
-            { id: 9, name: "Capilaridad" },
-            { id: 10, name: "Masa específica" }
-        ],
-        definitions: [
-            { id: 1, text: "Cantidad de masa por unidad de volumen (kg/m³)" },
-            { id: 2, text: "Resistencia interna del fluido al flujo, depende de la temperatura" },
-            { id: 3, text: "Fuerza que mantiene unidas las moléculas en la superficie del líquido" },
-            { id: 4, text: "Fuerza que ejerce un fluido en reposo por unidad de área" },
-            { id: 5, text: "Peso por unidad de volumen de un fluido (N/m³)" },
-            { id: 6, text: "Sistema de unidades basado en metro, kilogramo y segundo" },
-            { id: 7, text: "Instrumento para medir presión en fluidos confinados" },
-            { id: 8, text: "Sustancia que puede fluir y cambiar de forma al aplicar una fuerza" },
-            { id: 9, text: "Propiedad que permite a un líquido subir por tubos delgados por acción de fuerzas" },
-            { id: 10, text: "Sinónimo de densidad (aunque depende del contexto)" }
-        ]
-    };
+    // Get drag-drop data from translations
+    const dragDropData = t('trivia.dragDropData');
 
     const handleBackPress = () => {
         navigation.goBack();
@@ -185,11 +111,11 @@ export default function Unit1Screen({ navigation, route }) {
                 <View style={[styles.header, { backgroundColor: unitData.color }]}>
                     <View style={styles.headerTop}>
                         <TouchableOpacity style={styles.backButton} onPress={() => setDragDropActive(false)}>
-                            <Text style={styles.backButtonText}>← Volver a Trivia</Text>
+                            <Text style={styles.backButtonText}>← {t('trivia.backToTrivia')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.headerContent}>
-                        <Text style={styles.unitTitle}>Arrastra y Une</Text>
+                        <Text style={styles.unitTitle}>{t('trivia.dragAndDrop')}</Text>
                         <Text style={styles.scoreText}>Emparejados: {getDragDropScore()}/10</Text>
                     </View>
                 </View>
@@ -197,12 +123,12 @@ export default function Unit1Screen({ navigation, route }) {
                 <ScrollView style={styles.scrollView}>
                     <View style={styles.contentContainer}>
                         <Text style={styles.instructionText}>
-                            Selecciona un concepto y luego toca su definición correspondiente
+                            {t('trivia.selectConcept')}
                         </Text>
 
                         <View style={styles.dragDropContainer}>
                             <View style={styles.conceptsColumn}>
-                                <Text style={styles.columnTitle}>Conceptos</Text>
+                                <Text style={styles.columnTitle}>{t('trivia.concepts')}</Text>
                                 {dragDropData.concepts.map((concept) => (
                                     <TouchableOpacity
                                         key={concept.id}
@@ -225,7 +151,7 @@ export default function Unit1Screen({ navigation, route }) {
                             </View>
 
                             <View style={styles.definitionsColumn}>
-                                <Text style={styles.columnTitle}>Definiciones</Text>
+                                <Text style={styles.columnTitle}>{t('trivia.definitions')}</Text>
                                 {dragDropData.definitions.map((definition) => (
                                     <TouchableOpacity
                                         key={definition.id}
@@ -249,12 +175,12 @@ export default function Unit1Screen({ navigation, route }) {
 
                         {getDragDropScore() === 10 && (
                             <View style={styles.completionCard}>
-                                <Text style={styles.completionTitle}>¡Excelente trabajo! 🎉</Text>
+                                <Text style={styles.completionTitle}>{t('trivia.excellentWork')} 🎉</Text>
                                 <Text style={styles.completionText}>
-                                    Has completado correctamente todos los emparejamientos
+                                    {t('trivia.completedMatches')}
                                 </Text>
                                 <TouchableOpacity style={styles.resetButton} onPress={resetDragDrop}>
-                                    <Text style={styles.resetButtonText}>Reintentar</Text>
+                                    <Text style={styles.resetButtonText}>{t('trivia.retry')}</Text>
                                 </TouchableOpacity>
                             </View>
                         )}
@@ -271,7 +197,7 @@ export default function Unit1Screen({ navigation, route }) {
             <View style={[styles.header, { backgroundColor: unitData.color }]}>
                 <View style={styles.headerTop}>
                     <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-                        <Text style={styles.backButtonText}>← Volver</Text>
+                        <Text style={styles.backButtonText}>← {t('common.back')}</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -280,10 +206,10 @@ export default function Unit1Screen({ navigation, route }) {
                         <Text style={styles.headerIcon}>{unitData.icon}</Text>
                     </View>
                     <Text style={styles.unitNumber}>{unitData.unit}</Text>
-                    <Text style={styles.unitTitle}>Trivia de Hidrostática</Text>
+                    <Text style={styles.unitTitle}>{t('units.unit1.title')}</Text>
                     {!showResult && (
                         <Text style={styles.scoreText}>
-                            Pregunta {currentQuestion + 1} de {triviaQuestions.length} | Puntuación: {score}
+                            {t('trivia.question')} {currentQuestion + 1} {t('trivia.of')} {triviaQuestions.length} | Puntuación: {score}
                         </Text>
                     )}
                 </View>
@@ -295,7 +221,7 @@ export default function Unit1Screen({ navigation, route }) {
                         <View style={styles.questionContainer}>
                             <View style={styles.questionCard}>
                                 <Text style={styles.questionNumber}>
-                                    Pregunta {currentQuestion + 1}
+                                    {t('trivia.question')} {currentQuestion + 1}
                                 </Text>
                                 <Text style={styles.questionText}>
                                     {triviaQuestions[currentQuestion].question}
@@ -371,8 +297,8 @@ export default function Unit1Screen({ navigation, route }) {
                                                 : styles.incorrectTitle
                                         ]}>
                                             {selectedAnswer === triviaQuestions[currentQuestion].correct
-                                                ? "¡Correcto! ✅"
-                                                : "Incorrecto ❌"
+                                                ? `${t('trivia.correct')} ✅`
+                                                : `${t('trivia.incorrect')} ❌`
                                             }
                                         </Text>
                                     </View>
@@ -391,16 +317,18 @@ export default function Unit1Screen({ navigation, route }) {
                                 disabled={!showExplanation}
                             >
                                 <Text style={styles.nextButtonText}>
-                                    {currentQuestion + 1 === triviaQuestions.length ? 'Finalizar' : 'Siguiente'}
+                                    {currentQuestion + 1 === triviaQuestions.length ? t('common.finish') : t('trivia.nextQuestion')}
                                 </Text>
                             </TouchableOpacity>
                         </View>
                     ) : (
                         <View style={styles.resultContainer}>
                             <View style={styles.resultCard}>
-                                <Text style={styles.resultTitle}>¡Trivia Completada! 🎉</Text>
+                                <Text style={styles.resultTitle}>
+                                    {score >= triviaQuestions.length * 0.8 ? t('trivia.excellent') : score >= triviaQuestions.length * 0.6 ? t('trivia.good') : t('trivia.needsImprovement')} 🎉
+                                </Text>
                                 <Text style={styles.finalScore}>
-                                    Puntuación Final: {score}/{triviaQuestions.length}
+                                    {t('trivia.finalScore')}: {score}/{triviaQuestions.length}
                                 </Text>
                                 <Text style={styles.percentage}>
                                     {Math.round((score / triviaQuestions.length) * 100)}% de aciertos
@@ -408,14 +336,14 @@ export default function Unit1Screen({ navigation, route }) {
 
                                 <View style={styles.buttonContainer}>
                                     <TouchableOpacity style={styles.retryButton} onPress={resetTrivia}>
-                                        <Text style={styles.retryButtonText}>Reintentar Trivia</Text>
+                                        <Text style={styles.retryButtonText}>{t('trivia.tryAgain')}</Text>
                                     </TouchableOpacity>
 
                                     <TouchableOpacity
                                         style={styles.dragDropButton}
                                         onPress={() => setDragDropActive(true)}
                                     >
-                                        <Text style={styles.dragDropButtonText}>Arrastra y Une</Text>
+                                        <Text style={styles.dragDropButtonText}>{t('trivia.dragAndDrop')}</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -428,9 +356,9 @@ export default function Unit1Screen({ navigation, route }) {
                                 style={styles.dragDropPreview}
                                 onPress={() => setDragDropActive(true)}
                             >
-                                <Text style={styles.dragDropPreviewTitle}>🎯 Ejercicio Adicional</Text>
+                                <Text style={styles.dragDropPreviewTitle}>{t('trivia.additionalExercise')}</Text>
                                 <Text style={styles.dragDropPreviewText}>
-                                    Practica con el ejercicio de "Arrastra y Une" para reforzar los conceptos
+                                    {t('trivia.practiceDescription')}
                                 </Text>
                             </TouchableOpacity>
                         </View>

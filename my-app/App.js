@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { LanguageProvider } from './contexts/LanguageContext';
 import MainScreen from './interfaces/MainScreen';
 import Unit1Screen from './interfaces/units/Unit1Screen';
 import Unit2Screen from './interfaces/units/Unit2Screen';
@@ -17,7 +18,8 @@ const Stack = createStackNavigator();
 export default function App() {
     return (
         <SafeAreaProvider>
-            <NavigationContainer>
+            <LanguageProvider>
+                <NavigationContainer>
             <Stack.Navigator
                 initialRouteName="Main"
                 screenOptions={{
@@ -76,7 +78,8 @@ export default function App() {
                     }}
                 />
             </Stack.Navigator>
-        </NavigationContainer>
+                </NavigationContainer>
+            </LanguageProvider>
         </SafeAreaProvider>
     );
 }

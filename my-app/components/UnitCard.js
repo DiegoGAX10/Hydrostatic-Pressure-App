@@ -12,8 +12,8 @@ const UnitCard = ({ unit, onPress }) => {
                 <View style={styles.textContainer}>
                     <Text style={styles.unitNumber}>{unit.unit}</Text>
                     <Text style={styles.unitTitle}>{unit.title}</Text>
-                    <Text style={styles.topicsCount}>
-                        {unit.topics.length} temas • {unit.simulations.length} simulaciones
+                    <Text style={styles.description}>
+                        {unit.description}
                     </Text>
                 </View>
                 <View style={styles.arrow}>
@@ -68,10 +68,11 @@ const styles = StyleSheet.create({
         color: '#0277BD',
         marginBottom: 6,
     },
-    topicsCount: {
+    description: {
         fontSize: 14,
         color: '#37474F',
         opacity: 0.8,
+        lineHeight: 20,
     },
     arrow: {
         width: 40,

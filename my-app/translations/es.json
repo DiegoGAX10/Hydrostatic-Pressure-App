@@ -1,0 +1,213 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "back": "Volver",
+    "language": "Idioma",
+    "selectLanguage": "Seleccionar Idioma",
+    "start": "Comenzar",
+    "continue": "Continuar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "finish": "Finalizar",
+    "close": "Cerrar"
+  },
+  "mainScreen": {
+    "loadingSystem": "Cargando Sistema Hidráulico...",
+    "loadingContent": "Preparando contenido educativo",
+    "appTitle": "Hidráulica",
+    "subtitle": "Sistema de Aprendizaje Interactivo",
+    "studyUnits": "Unidades de Estudio",
+    "studyUnitsSubtitle": "Selecciona una unidad para comenzar tu aprendizaje",
+    "footerText": "Ingeniería Hidráulica - Sistema Educativo"
+  },
+  "units": {
+    "unit1": {
+      "title": "Principios Fundamentales",
+      "description": "Fundamentos básicos de la hidrostática y presión de fluidos",
+      "lesson": "Lección",
+      "exercise": "Ejercicio",
+      "trivia": "Trivia"
+    },
+    "unit2": {
+      "title": "Presión Hidrostática",
+      "description": "Estudio de la presión en fluidos en reposo y sus aplicaciones",
+      "lesson": "Lección",
+      "exercise": "Ejercicio",
+      "trivia": "Trivia"
+    },
+    "unit3": {
+      "title": "Principio de Pascal",
+      "description": "Comprende cómo se transmite la presión en fluidos confinados",
+      "lesson": "Lección",
+      "exercise": "Ejercicio",
+      "trivia": "Trivia"
+    },
+    "unit4": {
+      "title": "Principio de Arquímedes",
+      "description": "Flotación y fuerza de empuje en cuerpos sumergidos",
+      "lesson": "Lección",
+      "exercise": "Ejercicio",
+      "trivia": "Trivia"
+    },
+    "unit5": {
+      "title": "Aplicaciones Prácticas",
+      "description": "Casos reales de aplicación de principios hidrostáticos",
+      "lesson": "Lección",
+      "exercise": "Ejercicio",
+      "trivia": "Trivia"
+    }
+  },
+  "simulation": {
+    "hydrostaticPressure": "Presión Hidrostática",
+    "selectFluid": "Seleccionar Fluido:",
+    "water": "Agua",
+    "oil": "Aceite",
+    "mercury": "Mercurio",
+    "animate": "▶️ Animar",
+    "pause": "⏸️ Pausar",
+    "measurements": "Mediciones",
+    "objectWeight": "Peso del objeto:",
+    "waterElevation": "Elevación del agua:",
+    "objectPosition": "Posición del objeto:",
+    "displacedVolume": "Volumen desplazado:",
+    "hydrostaticPressure": "Presión Hidrostática:",
+    "buoyantForce": "Fuerza de Flotación:",
+    "fluidDensity": "Densidad del fluido:",
+    "atmosphericPressure": "Presión atmosférica:",
+    "absolutePressure": "Presión absoluta:",
+    "depth": "Profundidad (cm)",
+    "archimedesPrinciple": "Principio de Arquímedes y Presión Hidrostática",
+    "buoyantForceFormula": "Fuerza de Flotación",
+    "hydrostaticPressureFormula": "Presión Hidrostática",
+    "formulaDescription": "F_b = Fuerza de flotación (N)\\nρ_f = Densidad del fluido (kg/m³)\\ng = Aceleración gravitacional (9.81 m/s²)\\nV_d = Volumen desplazado (m³)\\nP = Presión hidrostática (Pa)\\nh = Profundidad (m)"
+  },
+  "trivia": {
+    "question": "Pregunta",
+    "of": "de",
+    "checkAnswer": "Verificar Respuesta",
+    "nextQuestion": "Siguiente Pregunta",
+    "correct": "¡Correcto!",
+    "incorrect": "Incorrecto",
+    "correctAnswer": "La respuesta correcta es:",
+    "finalScore": "Puntuación Final",
+    "outOf": "de",
+    "excellent": "¡Excelente!",
+    "good": "¡Buen trabajo!",
+    "needsImprovement": "Puedes mejorar",
+    "tryAgain": "Intentar de Nuevo",
+    "triviaCompleted": "¡Trivia Completada!",
+    "dragAndDrop": "Arrastra y Une",
+    "backToTrivia": "Volver a Trivia",
+    "selectConcept": "Selecciona un concepto y luego toca su definición correspondiente",
+    "concepts": "Conceptos",
+    "definitions": "Definiciones",
+    "excellentWork": "¡Excelente trabajo!",
+    "completedMatches": "Has completado correctamente todos los emparejamientos",
+    "retry": "Reintentar",
+    "additionalExercise": "🎯 Ejercicio Adicional",
+    "practiceDescription": "Practica con el ejercicio de \"Arrastra y Une\" para reforzar los conceptos",
+    "questions": [
+      {
+        "question": "¿Cuál de las siguientes NO es una propiedad física del agua?",
+        "options": ["Viscosidad", "Densidad", "Tensión superficial", "Conductividad eléctrica"],
+        "explanation": "Aunque el agua puede conducir electricidad, esta no es una propiedad física fundamental que se estudie en hidráulica básica."
+      },
+      {
+        "question": "¿Qué unidad se usa para medir presión en el Sistema Internacional?",
+        "options": ["Newton", "Pascal", "Joule", "Watt"],
+        "explanation": "El Pascal (Pa) es igual a N/m² y es la unidad de presión en el SI."
+      },
+      {
+        "question": "¿Cuál es la densidad aproximada del agua a 4°C?",
+        "options": ["500 kg/m³", "1000 kg/m³", "1200 kg/m³", "980 kg/m³"],
+        "explanation": "A 4°C, el agua tiene su máxima densidad: 1000 kg/m³."
+      },
+      {
+        "question": "¿Qué propiedad del fluido se relaciona con la resistencia interna al flujo?",
+        "options": ["Densidad", "Viscosidad", "Peso específico", "Tensión superficial"],
+        "explanation": "La viscosidad mide la resistencia al deslizamiento entre capas del fluido."
+      },
+      {
+        "question": "¿Cuál de los siguientes instrumentos se usa para medir presión?",
+        "options": ["Manómetro", "Pluviómetro", "Dinamómetro", "Barómetro de mercurio"],
+        "explanation": "El manómetro es un instrumento diseñado para medir presión de fluidos confinados."
+      },
+      {
+        "question": "¿Qué representa el número adimensional de Reynolds?",
+        "options": ["Relación entre presión y temperatura", "Relación entre fuerzas inerciales y viscosas", "Relación entre densidad y gravedad", "Relación entre área y caudal"],
+        "explanation": "Reynolds se usa para clasificar el tipo de flujo (laminar o turbulento)."
+      },
+      {
+        "question": "¿Qué sistema de unidades se basa en el metro, kilogramo y segundo?",
+        "options": ["Sistema Técnico", "Sistema Inglés", "Sistema Cegesimal", "Sistema Internacional (SI)"],
+        "explanation": "El SI se basa en m, kg, s, y es el sistema estándar usado en hidráulica."
+      },
+      {
+        "question": "¿Qué propiedad del agua permite que los insectos caminen sobre ella?",
+        "options": ["Densidad", "Capilaridad", "Tensión superficial", "Presión hidrostática"],
+        "explanation": "La tensión superficial forma una 'película' que resiste fuerzas externas leves."
+      },
+      {
+        "question": "¿Qué unidad representa el peso específico?",
+        "options": ["N/m²", "kg/m³", "N/m³", "Pa·s"],
+        "explanation": "El peso específico es el peso por unidad de volumen (N/m³)."
+      },
+      {
+        "question": "¿Qué propiedad física del agua se ve afectada principalmente por la temperatura?",
+        "options": ["Viscosidad", "Masa", "Altura", "Área transversal"],
+        "explanation": "La viscosidad del agua disminuye a medida que la temperatura aumenta."
+      }
+    ],
+    "dragDropData": {
+      "concepts": [
+        { "id": 1, "name": "Densidad" },
+        { "id": 2, "name": "Viscosidad" },
+        { "id": 3, "name": "Tensión superficial" },
+        { "id": 4, "name": "Presión hidrostática" },
+        { "id": 5, "name": "Peso específico" },
+        { "id": 6, "name": "Sistema Internacional" },
+        { "id": 7, "name": "Manómetro" },
+        { "id": 8, "name": "Fluido" },
+        { "id": 9, "name": "Capilaridad" },
+        { "id": 10, "name": "Masa específica" }
+      ],
+      "definitions": [
+        { "id": 1, "text": "Cantidad de masa por unidad de volumen (kg/m³)" },
+        { "id": 2, "text": "Resistencia interna del fluido al flujo, depende de la temperatura" },
+        { "id": 3, "text": "Fuerza que mantiene unidas las moléculas en la superficie del líquido" },
+        { "id": 4, "text": "Fuerza que ejerce un fluido en reposo por unidad de área" },
+        { "id": 5, "text": "Peso por unidad de volumen de un fluido (N/m³)" },
+        { "id": 6, "text": "Sistema de unidades basado en metro, kilogramo y segundo" },
+        { "id": 7, "text": "Instrumento para medir presión en fluidos confinados" },
+        { "id": 8, "text": "Sustancia que puede fluir y cambiar de forma al aplicar una fuerza" },
+        { "id": 9, "text": "Propiedad que permite a un líquido subir por tubos delgados por acción de fuerzas" },
+        { "id": 10, "text": "Sinónimo de densidad (aunque depende del contexto)" }
+      ]
+    }
+  },
+  "unit2": {
+    "generalDescription": "📚 Descripción General",
+    "description": "La hidrostática estudia los fluidos en reposo y las fuerzas que actúan sobre ellos. Esta unidad abarca los conceptos fundamentales de presión en fluidos estáticos, fuerzas sobre superficies sumergidas y principios de flotación.",
+    "studyTopics": "📖 Temas de Estudio",
+    "topics": [
+      "Presión hidrostática y sus propiedades fundamentales",
+      "Ecuación fundamental de la hidrostática",
+      "Principio de Pascal y sus aplicaciones",
+      "Principio de Arquímedes y flotación",
+      "Fuerzas sobre superficies planas sumergidas",
+      "Fuerzas sobre superficies curvas sumergidas",
+      "Manometría y medición de presiones",
+      "Estabilidad de cuerpos flotantes"
+    ],
+    "interactiveSimulations": "🧪 Simulaciones Interactivas",
+    "simulationsSubtitle": "Practica con simulaciones que te ayudarán a visualizar los conceptos",
+    "simulationDescription": "Simulación interactiva para comprender mejor este tema",
+    "learningObjectives": "🎯 Objetivos de Aprendizaje",
+    "objectives": [
+      "Comprender los principios fundamentales de la hidrostática",
+      "Calcular fuerzas sobre superficies sumergidas",
+      "Aplicar principios de flotación y estabilidad",
+      "Utilizar instrumentos de medición de presión"
+    ]
+  }
+}

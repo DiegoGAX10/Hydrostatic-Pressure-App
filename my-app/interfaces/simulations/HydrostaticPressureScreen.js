@@ -10,6 +10,7 @@ import {
     ScrollView
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useLanguage } from '../../contexts/LanguageContext';
 import Svg, { Rect, Circle, Line, Text as SvgText, Defs, LinearGradient, Stop, Path, Polygon, Ellipse } from 'react-native-svg';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
@@ -25,6 +26,7 @@ const OBJECT_DENSITY = 2000; // kg/m³ (más denso que el agua)
 const CONTAINER_CROSS_SECTION = 0.01; // área transversal del tanque en m² (simulada)
 
 const HydrostaticPressureScreen = ({ navigation }) => {
+    const { t } = useLanguage();
     const [objectPosition, setObjectPosition] = useState(150); // posición del objeto desde arriba (más cerca del agua)
     const [pressure, setPressure] = useState(0);
     const [baseWaterLevel, setBaseWaterLevel] = useState(200); // nivel base de agua sin objeto
@@ -41,9 +43,9 @@ const HydrostaticPressureScreen = ({ navigation }) => {
     const rippleAnimations = useRef(new Map());
 
     const fluids = {
-        water: { density: 1000, color: '#4FC3F7', name: 'Agua' },
-        oil: { density: 800, color: '#FFA726', name: 'Aceite' },
-        mercury: { density: 13600, color: '#9E9E9E', name: 'Mercurio' }
+        water: { density: 1000, color: '#4FC3F7', name: t('simulation.water') },
+        oil: { density: 800, color: '#FFA726', name: t('simulation.oil') },
+        mercury: { density: 13600, color: '#9E9E9E', name: t('simulation.mercury') }
     };
 
     // Animación para el punto de medición
@@ -288,26 +290,18 @@ const HydrostaticPressureScreen = ({ navigation }) => {
         return 0;
     };
 
-    // Obtener la profundidad real del objeto sumergido para mostrar en la interfaz
-    const getObjectDepthInFluid = () => {
-        const tankBottom = 50 + CONTAINER_HEIGHT;
-        const objectTop = objectPosition;
-        const objectBottom = objectPosition + OBJECT_SIZE;
-        
-        if (objectBottom > currentWaterLevel && objectTop < tankBottom) {
-            const submergedTop = Math.max(objectTop, currentWaterLevel);
-            const submergedBottom = Math.min(objectBottom, tankBottom);
-            const submergedHeight = Math.max(0, submergedBottom - submergedTop);
-            // Convertir a centímetros (asumiendo que el objeto de 30px = 3cm)
-            return (submergedHeight / OBJECT_SIZE) * 3; // 3cm es el tamaño real del objeto
-        }
-        return 0;
-    };
 
     // Función para obtener la intensidad del color del fluido basado en la profundidad
     const getFluidIntensity = () => {
         const displacement = getWaterDisplacement();
         return Math.min(1, 0.3 + displacement * 0.05); // Aumenta la intensidad con la profundidad
+    };
+
+    // Calcular el peso del objeto
+    const getObjectWeight = () => {
+        // Peso = masa * gravedad = densidad * volumen * gravedad
+        const objectWeight = OBJECT_DENSITY * OBJECT_VOLUME * GRAVITY;
+        return objectWeight; // en Newtons
     };
 
     return (
@@ -320,9 +314,9 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                     style={styles.backButton}
                     onPress={() => navigation.goBack()}
                 >
-                    <Text style={styles.backButtonText}>← Volver</Text>
+                    <Text style={styles.backButtonText}>← {t('common.back')}</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>Presión Hidrostática</Text>
+                <Text style={styles.headerTitle}>{t('simulation.hydrostaticPressure')}</Text>
             </View>
 
             <ScrollView
@@ -485,7 +479,7 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                                 textAnchor="middle"
                                 transform={`rotate(-90, 20, ${CONTAINER_HEIGHT / 2 + 50})`}
                             >
-                                Profundidad (cm)
+                                {t('simulation.depth')}
                             </SvgText>
                         </Svg>
 
@@ -524,7 +518,7 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                 {/* Controles */}
                 <View style={styles.controlsContainer}>
                     <View style={styles.fluidSelector}>
-                        <Text style={styles.controlLabel}>Seleccionar Fluido:</Text>
+                        <Text style={styles.controlLabel}>{t('simulation.selectFluid')}</Text>
                         <View style={styles.fluidButtons}>
                             {Object.entries(fluids).map(([key, fluid]) => (
                                 <TouchableOpacity
@@ -547,87 +541,73 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                         </View>
                     </View>
 
-                    <TouchableOpacity
-                        style={[styles.playButton, isPlaying && styles.playButtonActive]}
-                        onPress={() => setIsPlaying(!isPlaying)}
-                    >
-                        <Text style={styles.playButtonText}>
-                            {isPlaying ? '⏸️ Pausar' : '▶️ Animar'}
-                        </Text>
-                    </TouchableOpacity>
+
                 </View>
 
                 {/* Resultados */}
                 <View style={styles.resultsContainer}>
-                    <Text style={styles.resultsTitle}>Mediciones</Text>
+                    <Text style={styles.resultsTitle}>{t('simulation.measurements')}</Text>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Profundidad del objeto:</Text>
-                        <Text style={[styles.resultValue, {color: getObjectDepthInFluid() > 0 ? '#FF6B35' : '#0277BD'}]}>
-                            {getObjectDepthInFluid().toFixed(1)} cm
-                        </Text>
+                        <Text style={styles.resultLabel}>{t('simulation.objectWeight')}</Text>
+                        <Text style={styles.resultValue}>{formatForce(getObjectWeight())}</Text>
                     </View>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Elevación del agua:</Text>
+                        <Text style={styles.resultLabel}>{t('simulation.waterElevation')}</Text>
                         <Text style={[styles.resultValue, {color: Math.abs(baseWaterLevel - currentWaterLevel) > 0 ? '#4CAF50' : '#0277BD'}]}>
                             {Math.abs(baseWaterLevel - currentWaterLevel).toFixed(1)} px
                         </Text>
                     </View>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Posición del objeto:</Text>
+                        <Text style={styles.resultLabel}>{t('simulation.objectPosition')}</Text>
                         <Text style={styles.resultValue}>{((objectPosition - 50) / CONTAINER_HEIGHT * 100).toFixed(1)}%</Text>
                     </View>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Volumen desplazado:</Text>
+                        <Text style={styles.resultLabel}>{t('simulation.displacedVolume')}</Text>
                         <Text style={styles.resultValue}>{volumeDisplaced.toFixed(2)} cm³</Text>
                     </View>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Presión Hidrostática:</Text>
+                        <Text style={styles.resultLabel}>{t('simulation.hydrostaticPressure')}</Text>
                         <Text style={styles.resultValue}>{formatPressure(pressure)}</Text>
                     </View>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Fuerza de Flotación:</Text>
+                        <Text style={styles.resultLabel}>{t('simulation.buoyantForce')}</Text>
                         <Text style={styles.resultValue}>{formatForce(buoyantForce)}</Text>
                     </View>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Densidad del fluido:</Text>
+                        <Text style={styles.resultLabel}>{t('simulation.fluidDensity')}</Text>
                         <Text style={styles.resultValue}>{fluids[selectedFluid].density} kg/m³</Text>
                     </View>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Presión atmosférica:</Text>
+                        <Text style={styles.resultLabel}>{t('simulation.atmosphericPressure')}</Text>
                         <Text style={styles.resultValue}>101.325 kPa</Text>
                     </View>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Presión absoluta:</Text>
+                        <Text style={styles.resultLabel}>{t('simulation.absolutePressure')}</Text>
                         <Text style={styles.resultValue}>{formatPressure(pressure + 101325)}</Text>
                     </View>
                 </View>
 
                 {/* Fórmulas */}
                 <View style={styles.formulaContainer}>
-                    <Text style={styles.formulaTitle}>Principio de Arquímedes y Presión Hidrostática</Text>
+                    <Text style={styles.formulaTitle}>{t('simulation.archimedesPrinciple')}</Text>
 
                     <Text style={styles.formula}>F_b = ρ_f × g × V_d</Text>
-                    <Text style={styles.formulaSubtitle}>Fuerza de Flotación</Text>
+                    <Text style={styles.formulaSubtitle}>{t('simulation.buoyantForceFormula')}</Text>
 
                     <Text style={styles.formula}>P = ρ × g × h</Text>
-                    <Text style={styles.formulaSubtitle}>Presión Hidrostática</Text>
+                    <Text style={styles.formulaSubtitle}>{t('simulation.hydrostaticPressureFormula')}</Text>
 
                     <Text style={styles.formulaDescription}>
-                        F_b = Fuerza de flotación (N){'\n'}
-                        ρ_f = Densidad del fluido (kg/m³){'\n'}
-                        g = Aceleración gravitacional (9.81 m/s²){'\n'}
-                        V_d = Volumen desplazado (m³){'\n'}
-                        P = Presión hidrostática (Pa){'\n'}
-                        h = Profundidad (m)
+                        {t('simulation.formulaDescription')}
                     </Text>
                 </View>
             </ScrollView>

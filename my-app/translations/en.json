@@ -1,0 +1,213 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "back": "Back",
+    "language": "Language",
+    "selectLanguage": "Select Language",
+    "start": "Start",
+    "continue": "Continue",
+    "next": "Next",
+    "previous": "Previous",
+    "finish": "Finish",
+    "close": "Close"
+  },
+  "mainScreen": {
+    "loadingSystem": "Loading Hydraulic System...",
+    "loadingContent": "Preparing educational content",
+    "appTitle": "Hydraulics",
+    "subtitle": "Interactive Learning System",
+    "studyUnits": "Study Units",
+    "studyUnitsSubtitle": "Select a unit to begin your learning",
+    "footerText": "Hydraulic Engineering - Educational System"
+  },
+  "units": {
+    "unit1": {
+      "title": "Fundamental Principles",
+      "description": "Basic fundamentals of hydrostatics and fluid pressure",
+      "lesson": "Lesson",
+      "exercise": "Exercise",
+      "trivia": "Trivia"
+    },
+    "unit2": {
+      "title": "Hydrostatic Pressure",
+      "description": "Study of pressure in fluids at rest and their applications",
+      "lesson": "Lesson",
+      "exercise": "Exercise",
+      "trivia": "Trivia"
+    },
+    "unit3": {
+      "title": "Pascal's Principle",
+      "description": "Understand how pressure is transmitted in confined fluids",
+      "lesson": "Lesson",
+      "exercise": "Exercise",
+      "trivia": "Trivia"
+    },
+    "unit4": {
+      "title": "Archimedes' Principle",
+      "description": "Buoyancy and thrust force in submerged bodies",
+      "lesson": "Lesson",
+      "exercise": "Exercise",
+      "trivia": "Trivia"
+    },
+    "unit5": {
+      "title": "Practical Applications",
+      "description": "Real cases of hydrostatic principles application",
+      "lesson": "Lesson",
+      "exercise": "Exercise",
+      "trivia": "Trivia"
+    }
+  },
+  "simulation": {
+    "hydrostaticPressure": "Hydrostatic Pressure",
+    "selectFluid": "Select Fluid:",
+    "water": "Water",
+    "oil": "Oil",
+    "mercury": "Mercury",
+    "animate": "▶️ Animate",
+    "pause": "⏸️ Pause",
+    "measurements": "Measurements",
+    "objectWeight": "Object weight:",
+    "waterElevation": "Water elevation:",
+    "objectPosition": "Object position:",
+    "displacedVolume": "Displaced volume:",
+    "hydrostaticPressure": "Hydrostatic Pressure:",
+    "buoyantForce": "Buoyant Force:",
+    "fluidDensity": "Fluid density:",
+    "atmosphericPressure": "Atmospheric pressure:",
+    "absolutePressure": "Absolute pressure:",
+    "depth": "Depth (cm)",
+    "archimedesPrinciple": "Archimedes' Principle and Hydrostatic Pressure",
+    "buoyantForceFormula": "Buoyant Force",
+    "hydrostaticPressureFormula": "Hydrostatic Pressure",
+    "formulaDescription": "F_b = Buoyant force (N)\\nρ_f = Fluid density (kg/m³)\\ng = Gravitational acceleration (9.81 m/s²)\\nV_d = Displaced volume (m³)\\nP = Hydrostatic pressure (Pa)\\nh = Depth (m)"
+  },
+  "trivia": {
+    "question": "Question",
+    "of": "of",
+    "checkAnswer": "Check Answer",
+    "nextQuestion": "Next Question",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "correctAnswer": "The correct answer is:",
+    "finalScore": "Final Score",
+    "outOf": "out of",
+    "excellent": "Excellent!",
+    "good": "Good job!",
+    "needsImprovement": "You can improve",
+    "tryAgain": "Try Again",
+    "triviaCompleted": "Trivia Completed!",
+    "dragAndDrop": "Drag and Drop",
+    "backToTrivia": "Back to Trivia",
+    "selectConcept": "Select a concept and then tap its corresponding definition",
+    "concepts": "Concepts",
+    "definitions": "Definitions",
+    "excellentWork": "Excellent work!",
+    "completedMatches": "You have correctly completed all the matches",
+    "retry": "Retry",
+    "additionalExercise": "🎯 Additional Exercise",
+    "practiceDescription": "Practice with the \"Drag and Drop\" exercise to reinforce the concepts",
+    "questions": [
+      {
+        "question": "Which of the following is NOT a physical property of water?",
+        "options": ["Viscosity", "Density", "Surface tension", "Electrical conductivity"],
+        "explanation": "Although water can conduct electricity, this is not a fundamental physical property studied in basic hydraulics."
+      },
+      {
+        "question": "What unit is used to measure pressure in the International System?",
+        "options": ["Newton", "Pascal", "Joule", "Watt"],
+        "explanation": "The Pascal (Pa) equals N/m² and is the pressure unit in SI."
+      },
+      {
+        "question": "What is the approximate density of water at 4°C?",
+        "options": ["500 kg/m³", "1000 kg/m³", "1200 kg/m³", "980 kg/m³"],
+        "explanation": "At 4°C, water has its maximum density: 1000 kg/m³."
+      },
+      {
+        "question": "What fluid property relates to internal resistance to flow?",
+        "options": ["Density", "Viscosity", "Specific weight", "Surface tension"],
+        "explanation": "Viscosity measures the resistance to sliding between fluid layers."
+      },
+      {
+        "question": "Which of the following instruments is used to measure pressure?",
+        "options": ["Manometer", "Rain gauge", "Dynamometer", "Mercury barometer"],
+        "explanation": "The manometer is an instrument designed to measure confined fluid pressure."
+      },
+      {
+        "question": "What does the dimensionless Reynolds number represent?",
+        "options": ["Relationship between pressure and temperature", "Relationship between inertial and viscous forces", "Relationship between density and gravity", "Relationship between area and flow rate"],
+        "explanation": "Reynolds is used to classify the type of flow (laminar or turbulent)."
+      },
+      {
+        "question": "What unit system is based on meter, kilogram, and second?",
+        "options": ["Technical System", "Imperial System", "CGS System", "International System (SI)"],
+        "explanation": "The SI is based on m, kg, s, and is the standard system used in hydraulics."
+      },
+      {
+        "question": "What property of water allows insects to walk on it?",
+        "options": ["Density", "Capillarity", "Surface tension", "Hydrostatic pressure"],
+        "explanation": "Surface tension forms a 'film' that resists light external forces."
+      },
+      {
+        "question": "What unit represents specific weight?",
+        "options": ["N/m²", "kg/m³", "N/m³", "Pa·s"],
+        "explanation": "Specific weight is weight per unit volume (N/m³)."
+      },
+      {
+        "question": "What physical property of water is mainly affected by temperature?",
+        "options": ["Viscosity", "Mass", "Height", "Cross-sectional area"],
+        "explanation": "Water viscosity decreases as temperature increases."
+      }
+    ],
+    "dragDropData": {
+      "concepts": [
+        { "id": 1, "name": "Density" },
+        { "id": 2, "name": "Viscosity" },
+        { "id": 3, "name": "Surface tension" },
+        { "id": 4, "name": "Hydrostatic pressure" },
+        { "id": 5, "name": "Specific weight" },
+        { "id": 6, "name": "International System" },
+        { "id": 7, "name": "Manometer" },
+        { "id": 8, "name": "Fluid" },
+        { "id": 9, "name": "Capillarity" },
+        { "id": 10, "name": "Specific mass" }
+      ],
+      "definitions": [
+        { "id": 1, "text": "Amount of mass per unit volume (kg/m³)" },
+        { "id": 2, "text": "Internal resistance of fluid to flow, depends on temperature" },
+        { "id": 3, "text": "Force that holds molecules together at the liquid surface" },
+        { "id": 4, "text": "Force exerted by a fluid at rest per unit area" },
+        { "id": 5, "text": "Weight per unit volume of a fluid (N/m³)" },
+        { "id": 6, "text": "Unit system based on meter, kilogram, and second" },
+        { "id": 7, "text": "Instrument for measuring pressure in confined fluids" },
+        { "id": 8, "text": "Substance that can flow and change shape when force is applied" },
+        { "id": 9, "text": "Property that allows liquid to rise in thin tubes by force action" },
+        { "id": 10, "text": "Synonym for density (context dependent)" }
+      ]
+    }
+  },
+  "unit2": {
+    "generalDescription": "📚 General Description",
+    "description": "Hydrostatics studies fluids at rest and the forces acting on them. This unit covers the fundamental concepts of pressure in static fluids, forces on submerged surfaces, and buoyancy principles.",
+    "studyTopics": "📖 Study Topics",
+    "topics": [
+      "Hydrostatic pressure and its fundamental properties",
+      "Fundamental equation of hydrostatics",
+      "Pascal's principle and its applications",
+      "Archimedes' principle and buoyancy",
+      "Forces on submerged flat surfaces",
+      "Forces on submerged curved surfaces",
+      "Manometry and pressure measurement",
+      "Stability of floating bodies"
+    ],
+    "interactiveSimulations": "🧪 Interactive Simulations",
+    "simulationsSubtitle": "Practice with simulations that will help you visualize the concepts",
+    "simulationDescription": "Interactive simulation to better understand this topic",
+    "learningObjectives": "🎯 Learning Objectives",
+    "objectives": [
+      "Understand the fundamental principles of hydrostatics",
+      "Calculate forces on submerged surfaces",
+      "Apply principles of buoyancy and stability",
+      "Use pressure measurement instruments"
+    ]
+  }
+}

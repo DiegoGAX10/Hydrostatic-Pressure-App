@@ -8,9 +8,11 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function Unit2Screen({ navigation, route }) {
     const { unitData } = route.params;
+    const { t } = useLanguage();
 
     const handleSimulationPress = (simulation) => {
         navigation.navigate(simulation.screen);
@@ -28,7 +30,7 @@ export default function Unit2Screen({ navigation, route }) {
             <View style={[styles.header, { backgroundColor: unitData.color }]}>
                 <View style={styles.headerTop}>
                     <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-                        <Text style={styles.backButtonText}>← Volver</Text>
+                        <Text style={styles.backButtonText}>← {t('common.back')}</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -47,36 +49,20 @@ export default function Unit2Screen({ navigation, route }) {
 
                     {/* Descripción */}
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>📚 Descripción General</Text>
+                        <Text style={styles.sectionTitle}>{t('unit2.generalDescription')}</Text>
                         <View style={styles.descriptionCard}>
                             <Text style={styles.descriptionText}>
-                                La hidrostática estudia los fluidos en reposo y las fuerzas que
-                                actúan sobre ellos. Esta unidad abarca los conceptos fundamentales
-                                de presión en fluidos estáticos, fuerzas sobre superficies sumergidas
-                                y principios de flotación.
+                                {t('unit2.description')}
                             </Text>
                         </View>
-                    </View>
-
-                    {/* Temas */}
-                    <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>📖 Temas de Estudio</Text>
-                        {unitData.topics.map((topic, index) => (
-                            <View key={index} style={styles.topicCard}>
-                                <View style={styles.topicNumber}>
-                                    <Text style={styles.topicNumberText}>{index + 1}</Text>
-                                </View>
-                                <Text style={styles.topicText}>{topic}</Text>
-                            </View>
-                        ))}
                     </View>
 
                     {/* Simulaciones */}
                     {unitData.simulations && unitData.simulations.length > 0 && (
                         <View style={styles.section}>
-                            <Text style={styles.sectionTitle}>🧪 Simulaciones Interactivas</Text>
+                            <Text style={styles.sectionTitle}>{t('unit2.interactiveSimulations')}</Text>
                             <Text style={styles.simulationsSubtitle}>
-                                Practica con simulaciones que te ayudarán a visualizar los conceptos
+                                {t('unit2.simulationsSubtitle')}
                             </Text>
 
                             {unitData.simulations.map((simulation, index) => (
@@ -91,7 +77,7 @@ export default function Unit2Screen({ navigation, route }) {
                                     <View style={styles.simulationInfo}>
                                         <Text style={styles.simulationName}>{simulation.name}</Text>
                                         <Text style={styles.simulationDescription}>
-                                            Simulación interactiva para comprender mejor este tema
+                                            {t('unit2.simulationDescription')}
                                         </Text>
                                     </View>
                                     <View style={styles.simulationArrow}>
@@ -104,32 +90,16 @@ export default function Unit2Screen({ navigation, route }) {
 
                     {/* Objetivos de Aprendizaje */}
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>🎯 Objetivos de Aprendizaje</Text>
+                        <Text style={styles.sectionTitle}>{t('unit2.learningObjectives')}</Text>
                         <View style={styles.objectivesCard}>
-                            <View style={styles.objective}>
-                                <Text style={styles.objectiveBullet}>•</Text>
-                                <Text style={styles.objectiveText}>
-                                    Comprender los principios fundamentales de la hidrostática
-                                </Text>
-                            </View>
-                            <View style={styles.objective}>
-                                <Text style={styles.objectiveBullet}>•</Text>
-                                <Text style={styles.objectiveText}>
-                                    Calcular fuerzas sobre superficies sumergidas
-                                </Text>
-                            </View>
-                            <View style={styles.objective}>
-                                <Text style={styles.objectiveBullet}>•</Text>
-                                <Text style={styles.objectiveText}>
-                                    Aplicar principios de flotación y estabilidad
-                                </Text>
-                            </View>
-                            <View style={styles.objective}>
-                                <Text style={styles.objectiveBullet}>•</Text>
-                                <Text style={styles.objectiveText}>
-                                    Utilizar instrumentos de medición de presión
-                                </Text>
-                            </View>
+                            {t('unit2.objectives').map((objective, index) => (
+                                <View key={index} style={styles.objective}>
+                                    <Text style={styles.objectiveBullet}>•</Text>
+                                    <Text style={styles.objectiveText}>
+                                        {objective}
+                                    </Text>
+                                </View>
+                            ))}
                         </View>
                     </View>
                 </View>

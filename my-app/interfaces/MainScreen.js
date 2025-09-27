@@ -4,10 +4,13 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import UnitCard from '../components/UnitCard';
 import LoadingAnimation from '../components/LoadingAnimation';
-import { unitsData } from '../data/unitsData';
+import LanguageSelector from '../components/LanguageSelector';
+import { useLanguage } from '../contexts/LanguageContext';
+import { getUnitsData } from '../data/unitsData';
 
 export default function MainScreen({ navigation }) {
     const [isLoading, setIsLoading] = useState(true);
+    const { t, isLoading: langLoading } = useLanguage();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -20,13 +23,13 @@ export default function MainScreen({ navigation }) {
         navigation.navigate(unit.screen, { unitData: unit });
     };
 
-    if (isLoading) {
+    if (isLoading || langLoading) {
         return (
             <View style={styles.loadingContainer}>
                 <StatusBar style="light" />
                 <LoadingAnimation />
-                <Text style={styles.loadingText}>Cargando Sistema Hidráulico...</Text>
-                <Text style={styles.loadingSubtext}>Preparando contenido educativo</Text>
+                <Text style={styles.loadingText}>{t('mainScreen.loadingSystem')}</Text>
+                <Text style={styles.loadingSubtext}>{t('mainScreen.loadingContent')}</Text>
             </View>
         );
     }
@@ -37,22 +40,23 @@ export default function MainScreen({ navigation }) {
 
             {/* Header */}
             <View style={styles.header}>
+                <LanguageSelector style={styles.languageSelector} />
                 <View style={styles.headerContent}>
                     <LoadingAnimation />
-                    <Text style={styles.appTitle}>Hidráulica</Text>
-                    <Text style={styles.subtitle}>Sistema de Aprendizaje Interactivo</Text>
+                    <Text style={styles.appTitle}>{t('mainScreen.appTitle')}</Text>
+                    <Text style={styles.subtitle}>{t('mainScreen.subtitle')}</Text>
                 </View>
             </View>
 
             {/* Main Content */}
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <View style={styles.contentContainer}>
-                    <Text style={styles.sectionTitle}>Unidades de Estudio</Text>
+                    <Text style={styles.sectionTitle}>{t('mainScreen.studyUnits')}</Text>
                     <Text style={styles.sectionSubtitle}>
-                        Selecciona una unidad para comenzar tu aprendizaje
+                        {t('mainScreen.studyUnitsSubtitle')}
                     </Text>
 
-                    {unitsData.map((unit, index) => (
+                    {getUnitsData(t).map((unit) => (
                         <UnitCard
                             key={unit.id}
                             unit={unit}
@@ -65,7 +69,7 @@ export default function MainScreen({ navigation }) {
             {/* Footer */}
             <View style={styles.footer}>
                 <View style={styles.footerDot} />
-                <Text style={styles.footerText}>Ingeniería Hidráulica - Sistema Educativo</Text>
+                <Text style={styles.footerText}>{t('mainScreen.footerText')}</Text>
                 <View style={styles.footerDot} />
             </View>
         </View>
@@ -107,6 +111,13 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
+        position: 'relative',
+    },
+    languageSelector: {
+        position: 'absolute',
+        top: 55,
+        right: 20,
+        zIndex: 1000,
     },
     headerContent: {
         alignItems: 'center',

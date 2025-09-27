@@ -1,0 +1,213 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "back": "Zurück",
+    "language": "Sprache",
+    "selectLanguage": "Sprache auswählen",
+    "start": "Starten",
+    "continue": "Weiter",
+    "next": "Nächste",
+    "previous": "Vorherige",
+    "finish": "Beenden",
+    "close": "Schließen"
+  },
+  "mainScreen": {
+    "loadingSystem": "Hydraulisches System wird geladen...",
+    "loadingContent": "Lehrinhalte werden vorbereitet",
+    "appTitle": "Hydraulik",
+    "subtitle": "Interaktives Lernsystem",
+    "studyUnits": "Lerneinheiten",
+    "studyUnitsSubtitle": "Wählen Sie eine Einheit aus, um Ihr Lernen zu beginnen",
+    "footerText": "Hydraulik-Ingenieurwesen - Bildungssystem"
+  },
+  "units": {
+    "unit1": {
+      "title": "Grundprinzipien",
+      "description": "Grundlagen der Hydrostatik und des Flüssigkeitsdrucks",
+      "lesson": "Lektion",
+      "exercise": "Übung",
+      "trivia": "Quiz"
+    },
+    "unit2": {
+      "title": "Hydrostatischer Druck",
+      "description": "Studium des Drucks in ruhenden Flüssigkeiten und deren Anwendungen",
+      "lesson": "Lektion",
+      "exercise": "Übung",
+      "trivia": "Quiz"
+    },
+    "unit3": {
+      "title": "Pascalsches Prinzip",
+      "description": "Verstehen Sie, wie Druck in eingeschlossenen Flüssigkeiten übertragen wird",
+      "lesson": "Lektion",
+      "exercise": "Übung",
+      "trivia": "Quiz"
+    },
+    "unit4": {
+      "title": "Archimedisches Prinzip",
+      "description": "Auftrieb und Schubkraft bei untergetauchten Körpern",
+      "lesson": "Lektion",
+      "exercise": "Übung",
+      "trivia": "Quiz"
+    },
+    "unit5": {
+      "title": "Praktische Anwendungen",
+      "description": "Reale Fälle der Anwendung hydrostatischer Prinzipien",
+      "lesson": "Lektion",
+      "exercise": "Übung",
+      "trivia": "Quiz"
+    }
+  },
+  "simulation": {
+    "hydrostaticPressure": "Hydrostatischer Druck",
+    "selectFluid": "Flüssigkeit auswählen:",
+    "water": "Wasser",
+    "oil": "Öl",
+    "mercury": "Quecksilber",
+    "animate": "▶️ Animieren",
+    "pause": "⏸️ Pausieren",
+    "measurements": "Messungen",
+    "objectWeight": "Objektgewicht:",
+    "waterElevation": "Wasserhöhe:",
+    "objectPosition": "Objektposition:",
+    "displacedVolume": "Verdrängtes Volumen:",
+    "hydrostaticPressure": "Hydrostatischer Druck:",
+    "buoyantForce": "Auftriebskraft:",
+    "fluidDensity": "Flüssigkeitsdichte:",
+    "atmosphericPressure": "Atmosphärendruck:",
+    "absolutePressure": "Absoluter Druck:",
+    "depth": "Tiefe (cm)",
+    "archimedesPrinciple": "Archimedisches Prinzip und hydrostatischer Druck",
+    "buoyantForceFormula": "Auftriebskraft",
+    "hydrostaticPressureFormula": "Hydrostatischer Druck",
+    "formulaDescription": "F_b = Auftriebskraft (N)\\nρ_f = Flüssigkeitsdichte (kg/m³)\\ng = Gravitationsbeschleunigung (9.81 m/s²)\\nV_d = Verdrängtes Volumen (m³)\\nP = Hydrostatischer Druck (Pa)\\nh = Tiefe (m)"
+  },
+  "trivia": {
+    "question": "Frage",
+    "of": "von",
+    "checkAnswer": "Antwort überprüfen",
+    "nextQuestion": "Nächste Frage",
+    "correct": "Richtig!",
+    "incorrect": "Falsch",
+    "correctAnswer": "Die richtige Antwort ist:",
+    "finalScore": "Endergebnis",
+    "outOf": "von",
+    "excellent": "Ausgezeichnet!",
+    "good": "Gute Arbeit!",
+    "needsImprovement": "Sie können sich verbessern",
+    "tryAgain": "Nochmals versuchen",
+    "triviaCompleted": "Quiz abgeschlossen!",
+    "dragAndDrop": "Ziehen und Ablegen",
+    "backToTrivia": "Zurück zum Quiz",
+    "selectConcept": "Wählen Sie ein Konzept und tippen Sie dann auf die entsprechende Definition",
+    "concepts": "Konzepte",
+    "definitions": "Definitionen",
+    "excellentWork": "Ausgezeichnete Arbeit!",
+    "completedMatches": "Sie haben alle Zuordnungen korrekt abgeschlossen",
+    "retry": "Wiederholen",
+    "additionalExercise": "🎯 Zusätzliche Übung",
+    "practiceDescription": "Üben Sie mit der \"Ziehen und Ablegen\"-Übung, um die Konzepte zu vertiefen",
+    "questions": [
+      {
+        "question": "Welche der folgenden ist KEINE physikalische Eigenschaft von Wasser?",
+        "options": ["Viskosität", "Dichte", "Oberflächenspannung", "Elektrische Leitfähigkeit"],
+        "explanation": "Obwohl Wasser Elektrizität leiten kann, ist dies keine grundlegende physikalische Eigenschaft, die in der Grundhydraulik untersucht wird."
+      },
+      {
+        "question": "Welche Einheit wird zur Druckmessung im Internationalen System verwendet?",
+        "options": ["Newton", "Pascal", "Joule", "Watt"],
+        "explanation": "Das Pascal (Pa) entspricht N/m² und ist die Druckeinheit im SI."
+      },
+      {
+        "question": "Wie hoch ist die ungefähre Dichte von Wasser bei 4°C?",
+        "options": ["500 kg/m³", "1000 kg/m³", "1200 kg/m³", "980 kg/m³"],
+        "explanation": "Bei 4°C hat Wasser seine maximale Dichte: 1000 kg/m³."
+      },
+      {
+        "question": "Welche Flüssigkeitseigenschaft bezieht sich auf den inneren Widerstand gegen das Fließen?",
+        "options": ["Dichte", "Viskosität", "Spezifisches Gewicht", "Oberflächenspannung"],
+        "explanation": "Die Viskosität misst den Widerstand gegen das Gleiten zwischen Flüssigkeitsschichten."
+      },
+      {
+        "question": "Welches der folgenden Instrumente wird zur Druckmessung verwendet?",
+        "options": ["Manometer", "Regenmesser", "Dynamometer", "Quecksilberbarometer"],
+        "explanation": "Das Manometer ist ein Instrument zur Messung des Drucks eingeschlossener Flüssigkeiten."
+      },
+      {
+        "question": "Was repräsentiert die dimensionslose Reynolds-Zahl?",
+        "options": ["Verhältnis zwischen Druck und Temperatur", "Verhältnis zwischen Trägheits- und viskosen Kräften", "Verhältnis zwischen Dichte und Schwerkraft", "Verhältnis zwischen Fläche und Durchfluss"],
+        "explanation": "Reynolds wird verwendet, um die Art der Strömung (laminar oder turbulent) zu klassifizieren."
+      },
+      {
+        "question": "Welches Einheitensystem basiert auf Meter, Kilogramm und Sekunde?",
+        "options": ["Technisches System", "Imperiales System", "CGS-System", "Internationales System (SI)"],
+        "explanation": "Das SI basiert auf m, kg, s und ist das in der Hydraulik verwendete Standardsystem."
+      },
+      {
+        "question": "Welche Eigenschaft des Wassers ermöglicht es Insekten, darauf zu laufen?",
+        "options": ["Dichte", "Kapillarität", "Oberflächenspannung", "Hydrostatischer Druck"],
+        "explanation": "Die Oberflächenspannung bildet einen 'Film', der leichten äußeren Kräften widersteht."
+      },
+      {
+        "question": "Welche Einheit repräsentiert das spezifische Gewicht?",
+        "options": ["N/m²", "kg/m³", "N/m³", "Pa·s"],
+        "explanation": "Das spezifische Gewicht ist das Gewicht pro Volumeneinheit (N/m³)."
+      },
+      {
+        "question": "Welche physikalische Eigenschaft des Wassers wird hauptsächlich von der Temperatur beeinflusst?",
+        "options": ["Viskosität", "Masse", "Höhe", "Querschnittsfläche"],
+        "explanation": "Die Viskosität des Wassers nimmt mit steigender Temperatur ab."
+      }
+    ],
+    "dragDropData": {
+      "concepts": [
+        { "id": 1, "name": "Dichte" },
+        { "id": 2, "name": "Viskosität" },
+        { "id": 3, "name": "Oberflächenspannung" },
+        { "id": 4, "name": "Hydrostatischer Druck" },
+        { "id": 5, "name": "Spezifisches Gewicht" },
+        { "id": 6, "name": "Internationales System" },
+        { "id": 7, "name": "Manometer" },
+        { "id": 8, "name": "Flüssigkeit" },
+        { "id": 9, "name": "Kapillarität" },
+        { "id": 10, "name": "Spezifische Masse" }
+      ],
+      "definitions": [
+        { "id": 1, "text": "Menge der Masse pro Volumeneinheit (kg/m³)" },
+        { "id": 2, "text": "Innerer Widerstand der Flüssigkeit gegen Fließen, hängt von der Temperatur ab" },
+        { "id": 3, "text": "Kraft, die Moleküle an der Flüssigkeitsoberfläche zusammenhält" },
+        { "id": 4, "text": "Von einer ruhenden Flüssigkeit ausgeübte Kraft pro Flächeneinheit" },
+        { "id": 5, "text": "Gewicht pro Volumeneinheit einer Flüssigkeit (N/m³)" },
+        { "id": 6, "text": "Einheitensystem basierend auf Meter, Kilogramm und Sekunde" },
+        { "id": 7, "text": "Instrument zur Druckmessung in eingeschlossenen Flüssigkeiten" },
+        { "id": 8, "text": "Substanz, die fließen und ihre Form ändern kann, wenn Kraft angewendet wird" },
+        { "id": 9, "text": "Eigenschaft, die es Flüssigkeit ermöglicht, in dünnen Röhren durch Krafteinwirkung aufzusteigen" },
+        { "id": 10, "text": "Synonym für Dichte (kontextabhängig)" }
+      ]
+    }
+  },
+  "unit2": {
+    "generalDescription": "📚 Allgemeine Beschreibung",
+    "description": "Die Hydrostatik untersucht Flüssigkeiten in Ruhe und die auf sie wirkenden Kräfte. Diese Einheit behandelt die grundlegenden Konzepte des Drucks in statischen Flüssigkeiten, Kräfte auf untergetauchte Oberflächen und Auftriebsprinzipien.",
+    "studyTopics": "📖 Studienbereiche",
+    "topics": [
+      "Hydrostatischer Druck und seine grundlegenden Eigenschaften",
+      "Grundgleichung der Hydrostatik",
+      "Pascalsches Prinzip und seine Anwendungen",
+      "Archimedisches Prinzip und Auftrieb",
+      "Kräfte auf untergetauchte ebene Flächen",
+      "Kräfte auf untergetauchte gekrümmte Flächen",
+      "Manometrie und Druckmessung",
+      "Stabilität schwimmender Körper"
+    ],
+    "interactiveSimulations": "🧪 Interaktive Simulationen",
+    "simulationsSubtitle": "Üben Sie mit Simulationen, die Ihnen helfen, die Konzepte zu visualisieren",
+    "simulationDescription": "Interaktive Simulation zum besseren Verständnis dieses Themas",
+    "learningObjectives": "🎯 Lernziele",
+    "objectives": [
+      "Verstehen der grundlegenden Prinzipien der Hydrostatik",
+      "Berechnen von Kräften auf untergetauchte Oberflächen",
+      "Anwenden von Auftrieb- und Stabilitätsprinzipien",
+      "Verwenden von Druckmessgeräten"
+    ]
+  }
+}
