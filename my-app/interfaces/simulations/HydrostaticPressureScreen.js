@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     View,
     Text,
@@ -10,7 +10,7 @@ import {
     ScrollView
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import Svg, { Rect, Circle, Line, Text as SvgText, Defs, LinearGradient, Stop } from 'react-native-svg';
+import Svg, { Rect, Circle, Line, Text as SvgText, Defs, LinearGradient, Stop, Path, Polygon, Ellipse } from 'react-native-svg';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const CONTAINER_WIDTH = screenWidth - 40;
@@ -18,12 +18,27 @@ const CONTAINER_HEIGHT = 300;
 const WATER_DENSITY = 1000; // kg/m³
 const GRAVITY = 9.81; // m/s²
 
+// Object properties - moved outside component to avoid runtime issues
+const OBJECT_SIZE = 30; // tamaño en pixels del objeto
+const OBJECT_VOLUME = Math.pow(0.03, 3); // volumen real en m³ (3cm x 3cm x 3cm)
+const OBJECT_DENSITY = 2000; // kg/m³ (más denso que el agua)
+const CONTAINER_CROSS_SECTION = 0.01; // área transversal del tanque en m² (simulada)
+
 const HydrostaticPressureScreen = ({ navigation }) => {
-    const [depth, setDepth] = useState(50); // profundidad en cm
+    const [objectPosition, setObjectPosition] = useState(150); // posición del objeto desde arriba (más cerca del agua)
     const [pressure, setPressure] = useState(0);
-    const [waterLevel, setWaterLevel] = useState(200); // nivel de agua desde arriba
+    const [baseWaterLevel, setBaseWaterLevel] = useState(200); // nivel base de agua sin objeto
+    const [currentWaterLevel, setCurrentWaterLevel] = useState(200); // nivel actual de agua
     const [isPlaying, setIsPlaying] = useState(false);
     const [selectedFluid, setSelectedFluid] = useState('water');
+    const [buoyantForce, setBuoyantForce] = useState(0);
+    const [volumeDisplaced, setVolumeDisplaced] = useState(0);
+    const [isDragging, setIsDragging] = useState(false); // para pausar la simulación mientras se arrastra
+    const [scrollEnabled, setScrollEnabled] = useState(true); // controlar el scroll
+    const [ripples, setRipples] = useState([]); // ondas en el agua
+
+    const scrollViewRef = useRef(null);
+    const rippleAnimations = useRef(new Map());
 
     const fluids = {
         water: { density: 1000, color: '#4FC3F7', name: 'Agua' },
@@ -32,18 +47,98 @@ const HydrostaticPressureScreen = ({ navigation }) => {
     };
 
     // Animación para el punto de medición
-    const pointAnimation = new Animated.Value(0);
+    const pointAnimation = useRef(new Animated.Value(0)).current;
+    const objectAnimatedValue = useRef(new Animated.Value(objectPosition)).current;
+
+    // Función para crear ondas cuando el objeto entra al agua
+    const createRipple = (x, y) => {
+        const rippleId = Date.now() + Math.random();
+        const animation = new Animated.Value(0);
+        
+        const newRipple = {
+            id: rippleId,
+            x,
+            y,
+            animation
+        };
+
+        // Store animation reference for cleanup
+        rippleAnimations.current.set(rippleId, animation);
+        
+        setRipples(prev => [...prev, newRipple]);
+
+        Animated.timing(animation, {
+            toValue: 1,
+            duration: 1000,
+            useNativeDriver: false,
+        }).start(({ finished }) => {
+            if (finished) {
+                setRipples(prev => prev.filter(r => r.id !== rippleId));
+                rippleAnimations.current.delete(rippleId);
+            }
+        });
+    };
 
     useEffect(() => {
-        // Calcular presión hidrostática: P = ρgh
-        const depthInMeters = depth / 100;
+        // Coordenadas del contenedor (tanque empieza en y=50 y termina en y=350)
+        const tankTop = 50;
+        const tankBottom = tankTop + CONTAINER_HEIGHT;
+        const objectTop = objectPosition;
+        const objectBottom = objectPosition + OBJECT_SIZE;
         const fluidDensity = fluids[selectedFluid].density;
-        const calculatedPressure = fluidDensity * GRAVITY * depthInMeters;
+        
+        let submergedVolume = 0;
+        let submergedHeight = 0;
+        let newWaterLevel = baseWaterLevel;
+        let depth = 0;
+
+        // Variable para detectar si el objeto acaba de tocar el agua
+        const wasAboveWater = objectBottom <= baseWaterLevel;
+
+        // Calcular cuánto del objeto está sumergido
+        if (objectBottom > baseWaterLevel && objectTop < tankBottom) {
+            // El objeto está tocando o está dentro del fluido
+            const submergedTop = Math.max(objectTop, baseWaterLevel);
+            const submergedBottom = Math.min(objectBottom, tankBottom);
+            submergedHeight = Math.max(0, submergedBottom - submergedTop);
+            
+            // Calcular el ratio de submersión
+            const submergedRatio = submergedHeight / OBJECT_SIZE;
+            submergedVolume = OBJECT_VOLUME * submergedRatio;
+
+            // Calcular elevación del líquido por desplazamiento
+            // Mayor factor multiplicador para efecto visual más notorio
+            const volumeDisplacementInPixels = (submergedVolume / CONTAINER_CROSS_SECTION) * 5000;
+            newWaterLevel = baseWaterLevel - volumeDisplacementInPixels;
+
+            // Calcular profundidad real del objeto sumergido
+            // La profundidad es desde la superficie del agua hasta la parte más baja del objeto sumergido
+            if (objectBottom > newWaterLevel) {
+                depth = Math.max(0, (objectBottom - newWaterLevel)) / 100; // convertir pixels a metros (aprox)
+            }
+
+            // Ripple animations disabled to prevent immutable object errors
+            // if ((wasAboveWater || Math.abs(volumeDisplacementInPixels) > 3) && !isDragging) {
+            //     createRipple(CONTAINER_WIDTH / 2, newWaterLevel);
+            // }
+        }
+
+        // Actualizar estados
+        setCurrentWaterLevel(newWaterLevel);
+        setVolumeDisplaced(submergedVolume * 1000000); // convertir a cm³
+
+        // Calcular presión hidrostática
+        const calculatedPressure = fluidDensity * GRAVITY * depth;
         setPressure(calculatedPressure);
-    }, [depth, selectedFluid]);
+
+        // Calcular fuerza de flotación: F = ρ_fluid * g * V_displaced
+        const buoyancy = fluidDensity * GRAVITY * submergedVolume;
+        setBuoyantForce(buoyancy);
+
+    }, [objectPosition, selectedFluid, baseWaterLevel, isDragging]);
 
     useEffect(() => {
-        if (isPlaying) {
+        if (isPlaying && !isDragging) {
             Animated.loop(
                 Animated.sequence([
                     Animated.timing(pointAnimation, {
@@ -60,28 +155,96 @@ const HydrostaticPressureScreen = ({ navigation }) => {
             ).start();
         } else {
             pointAnimation.stopAnimation();
-            pointAnimation.setValue(0);
+            Animated.timing(pointAnimation, {
+                toValue: 0,
+                duration: 0,
+                useNativeDriver: true,
+            }).start();
         }
-    }, [isPlaying]);
+    }, [isPlaying, isDragging]);
 
-    // PanResponder para arrastrar el punto de medición
+    // Cleanup effect for animations
+    useEffect(() => {
+        return () => {
+            // Stop all animations on unmount
+            pointAnimation.stopAnimation();
+            objectAnimatedValue.stopAnimation();
+            
+            // Clear all ripple animations
+            rippleAnimations.current.forEach((animation) => {
+                animation.stopAnimation();
+            });
+            rippleAnimations.current.clear();
+        };
+    }, []);
+
+    // PanResponder para arrastrar el objeto
     const panResponder = PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: () => true,
+        onPanResponderGrant: (event) => {
+            setIsDragging(true);
+            setScrollEnabled(false); // deshabilitar scroll
+
+            // Obtener la posición inicial del toque
+            const { locationY } = event.nativeEvent;
+
+            // Crear una animación suave para seguir el dedo
+            Animated.timing(objectAnimatedValue, {
+                toValue: objectPosition,
+                duration: 0,
+                useNativeDriver: true,
+            }).start();
+        },
         onPanResponderMove: (event, gestureState) => {
-            const newDepth = Math.max(10, Math.min(waterLevel - 20, gestureState.moveY - 100));
-            setDepth(((newDepth - 50) / CONTAINER_HEIGHT) * 100 + 10);
+            const { moveY, dy } = gestureState;
+            const containerTopOffset = 170; // offset ajustado del contenedor desde la parte superior
+
+            // Limitar el movimiento dentro del contenedor y un poco arriba
+            const minPosition = 20; // permite que el objeto esté completamente fuera del agua
+            const maxPosition = 50 + CONTAINER_HEIGHT - OBJECT_SIZE; // puede llegar hasta el fondo del tanque
+
+            let newPosition = objectPosition + dy * 0.8; // factor de suavizado
+            newPosition = Math.max(minPosition, Math.min(maxPosition, newPosition));
+
+            // Actualizar posición directamente sin animación durante el arrastre
+            Animated.timing(objectAnimatedValue, {
+                toValue: newPosition,
+                duration: 0,
+                useNativeDriver: true,
+            }).start();
+            setObjectPosition(newPosition);
+        },
+        onPanResponderRelease: (event, gestureState) => {
+            setIsDragging(false);
+            setScrollEnabled(true); // rehabilitar scroll
+
+            // Animación de rebote suave al soltar
+            Animated.spring(objectAnimatedValue, {
+                toValue: objectPosition,
+                tension: 100,
+                friction: 8,
+                useNativeDriver: true,
+            }).start();
+        },
+        onPanResponderTerminate: () => {
+            setIsDragging(false);
+            setScrollEnabled(true);
         },
     });
-
-    const getDepthPosition = () => {
-        return 50 + ((depth - 10) / 100) * CONTAINER_HEIGHT;
-    };
 
     const formatPressure = (pressure) => {
         if (pressure >= 1000) {
             return `${(pressure / 1000).toFixed(2)} kPa`;
         }
         return `${pressure.toFixed(0)} Pa`;
+    };
+
+    const formatForce = (force) => {
+        if (force >= 1) {
+            return `${force.toFixed(3)} N`;
+        }
+        return `${(force * 1000).toFixed(1)} mN`;
     };
 
     const scale = pointAnimation.interpolate({
@@ -93,6 +256,59 @@ const HydrostaticPressureScreen = ({ navigation }) => {
         inputRange: [0, 1],
         outputRange: [0.8, 1],
     });
+
+    // Calcular la profundidad del objeto en el fluido para el efecto visual
+    const getSubmergedDepth = () => {
+        const tankBottom = 50 + CONTAINER_HEIGHT;
+        const objectTop = objectPosition;
+        const objectBottom = objectPosition + OBJECT_SIZE;
+        
+        // Verificar si el objeto está tocando o dentro del fluido
+        if (objectBottom > currentWaterLevel && objectTop < tankBottom) {
+            const submergedTop = Math.max(objectTop, currentWaterLevel);
+            const submergedBottom = Math.min(objectBottom, tankBottom);
+            return Math.max(0, submergedBottom - submergedTop);
+        }
+        return 0;
+    };
+
+    // Calcular el desplazamiento visual del agua para mayor efecto
+    const getWaterDisplacement = () => {
+        const tankBottom = 50 + CONTAINER_HEIGHT;
+        const objectTop = objectPosition;
+        const objectBottom = objectPosition + OBJECT_SIZE;
+        
+        if (objectBottom > baseWaterLevel && objectTop < tankBottom) {
+            const submergedTop = Math.max(objectTop, baseWaterLevel);
+            const submergedBottom = Math.min(objectBottom, tankBottom);
+            const submergedHeight = Math.max(0, submergedBottom - submergedTop);
+            const submergedRatio = submergedHeight / OBJECT_SIZE;
+            return submergedRatio * 20; // Factor para efecto visual
+        }
+        return 0;
+    };
+
+    // Obtener la profundidad real del objeto sumergido para mostrar en la interfaz
+    const getObjectDepthInFluid = () => {
+        const tankBottom = 50 + CONTAINER_HEIGHT;
+        const objectTop = objectPosition;
+        const objectBottom = objectPosition + OBJECT_SIZE;
+        
+        if (objectBottom > currentWaterLevel && objectTop < tankBottom) {
+            const submergedTop = Math.max(objectTop, currentWaterLevel);
+            const submergedBottom = Math.min(objectBottom, tankBottom);
+            const submergedHeight = Math.max(0, submergedBottom - submergedTop);
+            // Convertir a centímetros (asumiendo que el objeto de 30px = 3cm)
+            return (submergedHeight / OBJECT_SIZE) * 3; // 3cm es el tamaño real del objeto
+        }
+        return 0;
+    };
+
+    // Función para obtener la intensidad del color del fluido basado en la profundidad
+    const getFluidIntensity = () => {
+        const displacement = getWaterDisplacement();
+        return Math.min(1, 0.3 + displacement * 0.05); // Aumenta la intensidad con la profundidad
+    };
 
     return (
         <View style={styles.container}>
@@ -109,7 +325,12 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                 <Text style={styles.headerTitle}>Presión Hidrostática</Text>
             </View>
 
-            <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+            <ScrollView
+                ref={scrollViewRef}
+                style={styles.scrollView}
+                showsVerticalScrollIndicator={false}
+                scrollEnabled={scrollEnabled}
+            >
                 {/* Simulación */}
                 <View style={styles.simulationContainer}>
                     <View style={styles.tankContainer}>
@@ -117,7 +338,16 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                             <Defs>
                                 <LinearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                                     <Stop offset="0%" stopColor={fluids[selectedFluid].color} stopOpacity="0.3" />
-                                    <Stop offset="100%" stopColor={fluids[selectedFluid].color} stopOpacity="0.8" />
+                                    <Stop offset="100%" stopColor={fluids[selectedFluid].color} stopOpacity={getFluidIntensity()} />
+                                </LinearGradient>
+                                <LinearGradient id="submergedGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <Stop offset="0%" stopColor={fluids[selectedFluid].color} stopOpacity="0.6" />
+                                    <Stop offset="100%" stopColor={fluids[selectedFluid].color} stopOpacity="0.9" />
+                                </LinearGradient>
+                                <LinearGradient id="depthGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <Stop offset="0%" stopColor={fluids[selectedFluid].color} stopOpacity="0.4" />
+                                    <Stop offset="50%" stopColor={fluids[selectedFluid].color} stopOpacity="0.7" />
+                                    <Stop offset="100%" stopColor={fluids[selectedFluid].color} stopOpacity="0.95" />
                                 </LinearGradient>
                             </Defs>
 
@@ -132,46 +362,96 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                                 strokeWidth="3"
                             />
 
-                            {/* Agua */}
+                            {/* Líquido con gradiente de profundidad */}
                             <Rect
                                 x="53"
-                                y={waterLevel}
+                                y={Math.max(currentWaterLevel, 50)}
                                 width={CONTAINER_WIDTH - 106}
-                                height={CONTAINER_HEIGHT - waterLevel + 50}
-                                fill="url(#waterGradient)"
+                                height={Math.max(0, 50 + CONTAINER_HEIGHT - Math.max(currentWaterLevel, 50))}
+                                fill="url(#depthGradient)"
                             />
 
-                            {/* Superficie del agua */}
-                            <Line
-                                x1="53"
-                                y1={waterLevel}
-                                x2={CONTAINER_WIDTH - 53}
-                                y2={waterLevel}
+                            {/* Superficie del líquido con ondas más pronunciadas */}
+                            <Path
+                                d={`M 53 ${currentWaterLevel} 
+                                   Q 80 ${currentWaterLevel - (isDragging ? 5 + getWaterDisplacement() : 0)} 120 ${currentWaterLevel}
+                                   Q 160 ${currentWaterLevel + (isDragging ? 3 + getWaterDisplacement() * 0.5 : 0)} 200 ${currentWaterLevel}
+                                   Q 240 ${currentWaterLevel - (isDragging ? 2 + getWaterDisplacement() * 0.3 : 0)} ${CONTAINER_WIDTH - 53} ${currentWaterLevel}`}
                                 stroke="#0277BD"
-                                strokeWidth="2"
-                                strokeDasharray="5,5"
+                                strokeWidth="3"
+                                fill="none"
                             />
 
-                            {/* Punto de medición */}
-                            <Circle
-                                cx={CONTAINER_WIDTH / 2}
-                                cy={getDepthPosition()}
-                                r="8"
-                                fill="#E91E63"
-                                stroke="#FFFFFF"
-                                strokeWidth="2"
-                            />
 
-                            {/* Línea de profundidad */}
-                            <Line
-                                x1={CONTAINER_WIDTH / 2}
-                                y1={waterLevel}
-                                x2={CONTAINER_WIDTH / 2}
-                                y2={getDepthPosition()}
-                                stroke="#E91E63"
-                                strokeWidth="2"
-                                strokeDasharray="3,3"
-                            />
+                            {/* Ondas en el agua - simplified to avoid SVG animation issues */}
+                            {ripples.map((ripple) => {
+                                const waterDisplacement = getWaterDisplacement();
+                                const baseRadius = Math.max(40, 40 + waterDisplacement * 2);
+                                
+                                const animatedRadius = ripple.animation.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: [3, baseRadius],
+                                    extrapolate: 'clamp',
+                                });
+                                const animatedOpacity = ripple.animation.interpolate({
+                                    inputRange: [0, 0.2, 0.8, 1],
+                                    outputRange: [0, 0.8, 0.3, 0],
+                                    extrapolate: 'clamp',
+                                });
+
+                                return (
+                                    <React.Fragment key={ripple.id}>
+                                        <Circle
+                                            cx={ripple.x}
+                                            cy={ripple.y}
+                                            r={animatedRadius}
+                                            fill="none"
+                                            stroke={fluids[selectedFluid].color}
+                                            strokeWidth="2"
+                                            strokeOpacity={animatedOpacity}
+                                        />
+                                        <Circle
+                                            cx={ripple.x}
+                                            cy={ripple.y}
+                                            r={animatedRadius}
+                                            fill="none"
+                                            stroke="#FFFFFF"
+                                            strokeWidth="1"
+                                            strokeOpacity={animatedOpacity}
+                                        />
+                                    </React.Fragment>
+                                );
+                            })}
+
+                            {/* Línea del nivel original del agua */}
+                            {currentWaterLevel !== baseWaterLevel && (
+                                <Line
+                                    x1="53"
+                                    y1={baseWaterLevel}
+                                    x2={CONTAINER_WIDTH - 53}
+                                    y2={baseWaterLevel}
+                                    stroke="#0277BD"
+                                    strokeWidth="1"
+                                    strokeDasharray="2,2"
+                                    strokeOpacity="0.5"
+                                />
+                            )}
+
+
+
+
+                            {/* Línea indicadora del nivel del líquido en el objeto */}
+                            {objectPosition + OBJECT_SIZE > currentWaterLevel && (
+                                <Line
+                                    x1={CONTAINER_WIDTH / 2 - OBJECT_SIZE / 2 - 10}
+                                    y1={currentWaterLevel}
+                                    x2={CONTAINER_WIDTH / 2 + OBJECT_SIZE / 2 + 10}
+                                    y2={currentWaterLevel}
+                                    stroke="#00ACC1"
+                                    strokeWidth="2"
+                                    strokeDasharray="2,2"
+                                />
+                            )}
 
                             {/* Escala de profundidad */}
                             {[0, 25, 50, 75, 100].map((mark, index) => (
@@ -209,20 +489,34 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                             </SvgText>
                         </Svg>
 
-                        {/* Punto de medición animado */}
+                        {/* Objeto animado con mejor interacción */}
                         <Animated.View
                             style={[
-                                styles.measurementPoint,
+                                styles.objectContainer,
                                 {
-                                    left: CONTAINER_WIDTH / 2 - 10,
-                                    top: getDepthPosition() - 10,
-                                    transform: [{ scale }],
+                                    left: CONTAINER_WIDTH / 2 - OBJECT_SIZE / 2,
+                                    top: 0,
+                                    transform: [
+                                        { translateY: objectAnimatedValue },
+                                        { scale },
+                                        { rotateZ: isDragging ? '2deg' : '0deg' }
+                                    ],
                                     opacity,
+                                    elevation: isDragging ? 8 : 5,
+                                    shadowOpacity: isDragging ? 0.4 : 0.3,
                                 }
                             ]}
                             {...panResponder.panHandlers}
                         >
-                            <View style={styles.pointInner} />
+                            <View style={[
+                                styles.draggableObject,
+                                isDragging && styles.draggableObjectDragging
+                            ]} />
+                            {isDragging && (
+                                <View style={styles.dragIndicator}>
+                                    <Text style={styles.dragIndicatorText}>⇅</Text>
+                                </View>
+                            )}
                         </Animated.View>
                     </View>
                 </View>
@@ -268,13 +562,37 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                     <Text style={styles.resultsTitle}>Mediciones</Text>
 
                     <View style={styles.resultItem}>
-                        <Text style={styles.resultLabel}>Profundidad:</Text>
-                        <Text style={styles.resultValue}>{depth.toFixed(1)} cm</Text>
+                        <Text style={styles.resultLabel}>Profundidad del objeto:</Text>
+                        <Text style={[styles.resultValue, {color: getObjectDepthInFluid() > 0 ? '#FF6B35' : '#0277BD'}]}>
+                            {getObjectDepthInFluid().toFixed(1)} cm
+                        </Text>
+                    </View>
+
+                    <View style={styles.resultItem}>
+                        <Text style={styles.resultLabel}>Elevación del agua:</Text>
+                        <Text style={[styles.resultValue, {color: Math.abs(baseWaterLevel - currentWaterLevel) > 0 ? '#4CAF50' : '#0277BD'}]}>
+                            {Math.abs(baseWaterLevel - currentWaterLevel).toFixed(1)} px
+                        </Text>
+                    </View>
+
+                    <View style={styles.resultItem}>
+                        <Text style={styles.resultLabel}>Posición del objeto:</Text>
+                        <Text style={styles.resultValue}>{((objectPosition - 50) / CONTAINER_HEIGHT * 100).toFixed(1)}%</Text>
+                    </View>
+
+                    <View style={styles.resultItem}>
+                        <Text style={styles.resultLabel}>Volumen desplazado:</Text>
+                        <Text style={styles.resultValue}>{volumeDisplaced.toFixed(2)} cm³</Text>
                     </View>
 
                     <View style={styles.resultItem}>
                         <Text style={styles.resultLabel}>Presión Hidrostática:</Text>
                         <Text style={styles.resultValue}>{formatPressure(pressure)}</Text>
+                    </View>
+
+                    <View style={styles.resultItem}>
+                        <Text style={styles.resultLabel}>Fuerza de Flotación:</Text>
+                        <Text style={styles.resultValue}>{formatForce(buoyantForce)}</Text>
                     </View>
 
                     <View style={styles.resultItem}>
@@ -293,14 +611,22 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                     </View>
                 </View>
 
-                {/* Fórmula */}
+                {/* Fórmulas */}
                 <View style={styles.formulaContainer}>
-                    <Text style={styles.formulaTitle}>Fórmula de Presión Hidrostática</Text>
+                    <Text style={styles.formulaTitle}>Principio de Arquímedes y Presión Hidrostática</Text>
+
+                    <Text style={styles.formula}>F_b = ρ_f × g × V_d</Text>
+                    <Text style={styles.formulaSubtitle}>Fuerza de Flotación</Text>
+
                     <Text style={styles.formula}>P = ρ × g × h</Text>
+                    <Text style={styles.formulaSubtitle}>Presión Hidrostática</Text>
+
                     <Text style={styles.formulaDescription}>
-                        P = Presión hidrostática (Pa){'\n'}
-                        ρ = Densidad del fluido (kg/m³){'\n'}
+                        F_b = Fuerza de flotación (N){'\n'}
+                        ρ_f = Densidad del fluido (kg/m³){'\n'}
                         g = Aceleración gravitacional (9.81 m/s²){'\n'}
+                        V_d = Volumen desplazado (m³){'\n'}
+                        P = Presión hidrostática (Pa){'\n'}
                         h = Profundidad (m)
                     </Text>
                 </View>
@@ -353,27 +679,46 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
     },
-    measurementPoint: {
+    objectContainer: {
         position: 'absolute',
-        width: 20,
-        height: 20,
-        borderRadius: 10,
-        backgroundColor: '#E91E63',
-        borderWidth: 2,
-        borderColor: '#FFFFFF',
+        width: OBJECT_SIZE,
+        height: OBJECT_SIZE,
         alignItems: 'center',
         justifyContent: 'center',
-        elevation: 5,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
         shadowRadius: 3,
     },
-    pointInner: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        backgroundColor: '#FFFFFF',
+    draggableObject: {
+        width: OBJECT_SIZE,
+        height: OBJECT_SIZE,
+        backgroundColor: 'rgba(255, 107, 53, 0.9)',
+        borderWidth: 2,
+        borderColor: '#D84315',
+        borderRadius: 2,
+        transition: 'all 0.2s ease',
+    },
+    draggableObjectDragging: {
+        backgroundColor: 'rgba(255, 107, 53, 1)',
+        borderWidth: 3,
+        borderColor: '#FF3D00',
+        transform: [{ scale: 1.05 }],
+    },
+    dragIndicator: {
+        position: 'absolute',
+        top: -25,
+        left: OBJECT_SIZE / 2 - 8,
+        width: 16,
+        height: 16,
+        backgroundColor: '#FF3D00',
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    dragIndicatorText: {
+        color: '#FFFFFF',
+        fontSize: 10,
+        fontWeight: 'bold',
     },
     controlsContainer: {
         marginHorizontal: 20,
@@ -498,7 +843,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#E91E63',
         textAlign: 'center',
+        marginBottom: 4,
+    },
+    formulaSubtitle: {
+        fontSize: 12,
+        color: '#666',
+        textAlign: 'center',
         marginBottom: 12,
+        fontStyle: 'italic',
     },
     formulaDescription: {
         fontSize: 14,

@@ -16,7 +16,7 @@ const LoadingAnimation = () => {
             ).start();
         };
         startRotation();
-    }, []);
+    }, [rotation]);
 
     const rotateData = rotation.interpolate({
         inputRange: [0, 1],

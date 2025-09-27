@@ -5,10 +5,10 @@ import {
     ScrollView,
     TouchableOpacity,
     StyleSheet,
-    SafeAreaView,
     Alert,
     Modal
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
 export default function Unit1Screen({ navigation, route }) {
@@ -25,6 +25,7 @@ export default function Unit1Screen({ navigation, route }) {
     const [selectedConcept, setSelectedConcept] = useState(null);
 
     // Preguntas de trivia del documento
+
     const triviaQuestions = [
         {
             question: "¿Cuál de las siguientes NO es una propiedad física del agua?",

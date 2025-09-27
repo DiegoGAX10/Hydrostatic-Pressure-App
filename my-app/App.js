@@ -2,6 +2,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import MainScreen from './interfaces/MainScreen';
 import Unit1Screen from './interfaces/units/Unit1Screen';
@@ -15,17 +16,13 @@ const Stack = createStackNavigator();
 
 export default function App() {
     return (
-        <NavigationContainer>
+        <SafeAreaProvider>
+            <NavigationContainer>
             <Stack.Navigator
                 initialRouteName="Main"
                 screenOptions={{
                     headerShown: false,
                     cardStyle: { backgroundColor: '#F5F5F5' },
-                    cardStyleInterpolator: ({ current }) => ({
-                        cardStyle: {
-                            opacity: current.progress,
-                        },
-                    }),
                 }}
             >
                 <Stack.Screen
@@ -49,6 +46,7 @@ export default function App() {
                         title: 'Hidrostática'
                     }}
                 />
+
                 <Stack.Screen
                     name="Unit3"
                     component={Unit3Screen}
@@ -79,5 +77,6 @@ export default function App() {
                 />
             </Stack.Navigator>
         </NavigationContainer>
+        </SafeAreaProvider>
     );
 }

@@ -20,13 +20,6 @@ export const unitsData = [
         screen: "Unit2",
         color: "#BBDEFB",
         topics: [
-            "Presión en fluidos en reposo y ecuación fundamental",
-            "Manómetros, barómetros y medición de presión",
-            "Fuerzas sobre superficies sumergidas planas",
-            "Fuerzas sobre superficies sumergidas curvas",
-            "Centro de presión y centro de gravedad",
-            "Principio de flotación y estabilidad",
-            "Metacentro y condiciones de equilibrio"
         ],
         simulations: [
             {
@@ -35,6 +28,7 @@ export const unitsData = [
             }
         ]
     },
+    /*
     {
         id: 3,
         unit: "Unidad 3",
@@ -89,4 +83,5 @@ export const unitsData = [
         ],
         simulations: []
     }
+     */
 ];
