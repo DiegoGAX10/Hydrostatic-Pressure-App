@@ -76,6 +76,7 @@
     "atmosphericPressure": "Atmospheric pressure:",
     "absolutePressure": "Absolute pressure:",
     "depth": "Depth (cm)",
+    "calculatedDensity": "Calculated density",
     "archimedesPrinciple": "Archimedes' Principle and Hydrostatic Pressure",
     "buoyantForceFormula": "Buoyant Force",
     "hydrostaticPressureFormula": "Hydrostatic Pressure",

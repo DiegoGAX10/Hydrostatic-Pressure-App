@@ -76,6 +76,7 @@
     "atmosphericPressure": "Presión atmosférica:",
     "absolutePressure": "Presión absoluta:",
     "depth": "Profundidad (cm)",
+    "calculatedDensity": "Densidad calculada",
     "archimedesPrinciple": "Principio de Arquímedes y Presión Hidrostática",
     "buoyantForceFormula": "Fuerza de Flotación",
     "hydrostaticPressureFormula": "Presión Hidrostática",

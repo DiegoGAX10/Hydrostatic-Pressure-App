@@ -7,7 +7,8 @@ import {
     Animated,
     Dimensions,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    TextInput
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -38,6 +39,8 @@ const HydrostaticPressureScreen = ({ navigation }) => {
     const [isDragging, setIsDragging] = useState(false); // para pausar la simulación mientras se arrastra
     const [scrollEnabled, setScrollEnabled] = useState(true); // controlar el scroll
     const [ripples, setRipples] = useState([]); // ondas en el agua
+    const [customWeight, setCustomWeight] = useState(OBJECT_DENSITY * OBJECT_VOLUME * GRAVITY); // peso personalizado en Newtons
+    const [weightInput, setWeightInput] = useState((OBJECT_DENSITY * OBJECT_VOLUME * GRAVITY).toFixed(2)); // input del usuario
 
     const scrollViewRef = useRef(null);
     const rippleAnimations = useRef(new Map());
@@ -297,11 +300,24 @@ const HydrostaticPressureScreen = ({ navigation }) => {
         return Math.min(1, 0.3 + displacement * 0.05); // Aumenta la intensidad con la profundidad
     };
 
-    // Calcular el peso del objeto
+    // Función para validar y actualizar el peso personalizado
+    const handleWeightChange = (value) => {
+        setWeightInput(value);
+        const numericValue = parseFloat(value);
+        if (!isNaN(numericValue) && numericValue > 0) {
+            setCustomWeight(numericValue);
+        }
+    };
+
+    // Calcular el peso del objeto (ahora usa el peso personalizado)
     const getObjectWeight = () => {
-        // Peso = masa * gravedad = densidad * volumen * gravedad
-        const objectWeight = OBJECT_DENSITY * OBJECT_VOLUME * GRAVITY;
-        return objectWeight; // en Newtons
+        return customWeight; // en Newtons
+    };
+
+    // Calcular la densidad del objeto basada en el peso personalizado
+    const getObjectDensity = () => {
+        // densidad = peso / (volumen * gravedad)
+        return customWeight / (OBJECT_VOLUME * GRAVITY); // kg/m³
     };
 
     return (
@@ -541,6 +557,23 @@ const HydrostaticPressureScreen = ({ navigation }) => {
                         </View>
                     </View>
 
+                    <View style={styles.weightInputContainer}>
+                        <Text style={styles.controlLabel}>{t('simulation.objectWeight')} (N)</Text>
+                        <View style={styles.weightInputWrapper}>
+                            <TextInput
+                                style={styles.weightInput}
+                                value={weightInput}
+                                onChangeText={handleWeightChange}
+                                placeholder="0.00"
+                                keyboardType="numeric"
+                                selectTextOnFocus={true}
+                            />
+                            <Text style={styles.weightUnit}>N</Text>
+                        </View>
+                        <Text style={styles.weightHint}>
+                            {t('simulation.calculatedDensity')}: {getObjectDensity().toFixed(0)} kg/m³
+                        </Text>
+                    </View>
 
                 </View>
 
@@ -743,6 +776,44 @@ const styles = StyleSheet.create({
     },
     selectedFluidButtonText: {
         color: '#0277BD',
+    },
+    weightInputContainer: {
+        backgroundColor: '#FFFFFF',
+        borderRadius: 12,
+        padding: 16,
+        marginBottom: 12,
+        elevation: 4,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+    },
+    weightInputWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#F5F5F5',
+        borderRadius: 8,
+        paddingHorizontal: 12,
+        borderWidth: 1,
+        borderColor: '#E0E0E0',
+    },
+    weightInput: {
+        flex: 1,
+        paddingVertical: 12,
+        fontSize: 16,
+        color: '#333',
+    },
+    weightUnit: {
+        fontSize: 16,
+        color: '#0277BD',
+        fontWeight: '600',
+        marginLeft: 8,
+    },
+    weightHint: {
+        fontSize: 12,
+        color: '#666',
+        marginTop: 6,
+        fontStyle: 'italic',
     },
     playButton: {
         backgroundColor: '#4CAF50',
