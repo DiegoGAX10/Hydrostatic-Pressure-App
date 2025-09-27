@@ -25,6 +25,8 @@ export default function Unit1Screen({ navigation, route }) {
     const [dragDropActive, setDragDropActive] = useState(false);
     const [matchedPairs, setMatchedPairs] = useState({});
     const [selectedConcept, setSelectedConcept] = useState(null);
+    const [shuffledConcepts, setShuffledConcepts] = useState([]);
+    const [shuffledDefinitions, setShuffledDefinitions] = useState([]);
 
     // Get trivia questions from translations
     const triviaQuestions = t('trivia.questions').map((q, index) => ({
@@ -42,6 +44,22 @@ export default function Unit1Screen({ navigation, route }) {
 
     // Get drag-drop data from translations
     const dragDropData = t('trivia.dragDropData');
+
+    // Function to shuffle an array
+    const shuffleArray = (array) => {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    };
+
+    // Function to initialize shuffled data
+    const initializeShuffledData = () => {
+        setShuffledConcepts(shuffleArray(dragDropData.concepts));
+        setShuffledDefinitions(shuffleArray(dragDropData.definitions));
+    };
 
     const handleBackPress = () => {
         navigation.goBack();
@@ -101,6 +119,7 @@ export default function Unit1Screen({ navigation, route }) {
     const resetDragDrop = () => {
         setMatchedPairs({});
         setSelectedConcept(null);
+        initializeShuffledData(); // Mezclamos de nuevo cuando se reinicia
     };
 
     if (dragDropActive) {
@@ -129,7 +148,7 @@ export default function Unit1Screen({ navigation, route }) {
                         <View style={styles.dragDropContainer}>
                             <View style={styles.conceptsColumn}>
                                 <Text style={styles.columnTitle}>{t('trivia.concepts')}</Text>
-                                {dragDropData.concepts.map((concept) => (
+                                {shuffledConcepts.map((concept) => (
                                     <TouchableOpacity
                                         key={concept.id}
                                         style={[
@@ -152,7 +171,7 @@ export default function Unit1Screen({ navigation, route }) {
 
                             <View style={styles.definitionsColumn}>
                                 <Text style={styles.columnTitle}>{t('trivia.definitions')}</Text>
-                                {dragDropData.definitions.map((definition) => (
+                                {shuffledDefinitions.map((definition) => (
                                     <TouchableOpacity
                                         key={definition.id}
                                         style={[
@@ -341,7 +360,10 @@ export default function Unit1Screen({ navigation, route }) {
 
                                     <TouchableOpacity
                                         style={styles.dragDropButton}
-                                        onPress={() => setDragDropActive(true)}
+                                        onPress={() => {
+                                            initializeShuffledData();
+                                            setDragDropActive(true);
+                                        }}
                                     >
                                         <Text style={styles.dragDropButtonText}>{t('trivia.dragAndDrop')}</Text>
                                     </TouchableOpacity>
@@ -354,7 +376,10 @@ export default function Unit1Screen({ navigation, route }) {
                         <View style={styles.extraSection}>
                             <TouchableOpacity
                                 style={styles.dragDropPreview}
-                                onPress={() => setDragDropActive(true)}
+                                onPress={() => {
+                                    initializeShuffledData();
+                                    setDragDropActive(true);
+                                }}
                             >
                                 <Text style={styles.dragDropPreviewTitle}>{t('trivia.additionalExercise')}</Text>
                                 <Text style={styles.dragDropPreviewText}>
