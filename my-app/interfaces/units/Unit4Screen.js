@@ -8,9 +8,11 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { useLanguage } from '../../contexts/LanguageContext';
 
-export default function UnitTemplateScreen({ navigation, route }) {
+export default function Unit4Screen({ navigation, route }) {
     const { unitData } = route.params;
+    const { t } = useLanguage();
 
     const handleSimulationPress = (simulation) => {
         navigation.navigate(simulation.screen);
@@ -20,45 +22,24 @@ export default function UnitTemplateScreen({ navigation, route }) {
         navigation.goBack();
     };
 
-    // Contenido de prueba con Lorem Ipsum
-    const testContent = {
-        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                     Sed do eiusmod tempor incididunt ut labore et dolore magna 
-                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                     ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
-
-        objectives: [
-            "Lorem ipsum dolor sit amet consectetur adipiscing elit",
-            "Sed do eiusmod tempor incididunt ut labore et dolore",
-            "Ut enim ad minim veniam quis nostrud exercitation",
-            "Duis aute irure dolor in reprehenderit in voluptate"
-        ],
-
-        keyFormulas: [
-            { name: "Formula Lorem", formula: "L = i/p", description: "Lorem ipsum dolor sit" },
-            { name: "Formula Ipsum", formula: "I = p/s", description: "Ipsum lorem sit dolor" },
-            { name: "Formula Test", formula: "T = l/o", description: "Test lorem ipsum sit" }
-        ]
-    };
-
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar style="light" />
 
             {/* Header */}
-            <View style={[styles.header, { backgroundColor: unitData?.color || '#2196F3' }]}>
+            <View style={[styles.header, { backgroundColor: unitData.color }]}>
                 <View style={styles.headerTop}>
                     <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-                        <Text style={styles.backButtonText}>← Volver</Text>
+                        <Text style={styles.backButtonText}>← {t('common.back')}</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.headerContent}>
                     <View style={styles.iconContainer}>
-                        <Text style={styles.headerIcon}>🧪</Text>
+                        <Text style={styles.headerIcon}>{unitData.icon}</Text>
                     </View>
-                    <Text style={styles.unitNumber}>PRUEBA</Text>
-                    <Text style={styles.unitTitle}>Template Lorem Ipsum</Text>
+                    <Text style={styles.unitNumber}>{unitData.unit}</Text>
+                    <Text style={styles.unitTitle}>{unitData.title}</Text>
                 </View>
             </View>
 
@@ -68,18 +49,18 @@ export default function UnitTemplateScreen({ navigation, route }) {
 
                     {/* Descripción */}
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>📚 Lorem Ipsum</Text>
+                        <Text style={styles.sectionTitle}>{t('unit4.generalDescription')}</Text>
                         <View style={styles.descriptionCard}>
                             <Text style={styles.descriptionText}>
-                                {testContent.description}
+                                {t('unit4.description')}
                             </Text>
                         </View>
                     </View>
 
                     {/* Temas */}
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>📖 Temas Lorem</Text>
-                        {['Lorem ipsum dolor', 'Consectetur adipiscing', 'Sed do eiusmod', 'Tempor incididunt'].map((topic, index) => (
+                        <Text style={styles.sectionTitle}>{t('unit4.studyTopics')}</Text>
+                        {t('unit4.topics').map((topic, index) => (
                             <View key={index} style={styles.topicCard}>
                                 <View style={styles.topicNumber}>
                                     <Text style={styles.topicNumberText}>{index + 1}</Text>
@@ -91,8 +72,8 @@ export default function UnitTemplateScreen({ navigation, route }) {
 
                     {/* Fórmulas Clave */}
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>📐 Fórmulas Lorem</Text>
-                        {testContent.keyFormulas.map((formula, index) => (
+                        <Text style={styles.sectionTitle}>{t('unit4.keyFormulas')}</Text>
+                        {t('unit4.formulas').map((formula, index) => (
                             <View key={index} style={styles.formulaCard}>
                                 <View style={styles.formulaHeader}>
                                     <Text style={styles.formulaName}>{formula.name}</Text>
@@ -103,52 +84,47 @@ export default function UnitTemplateScreen({ navigation, route }) {
                         ))}
                     </View>
 
-                    {/* Simulaciones de Prueba */}
-                    <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>🧪 Simulaciones Lorem</Text>
-                        <Text style={styles.simulationsSubtitle}>
-                            Lorem ipsum dolor sit amet consectetur adipiscing elit
-                        </Text>
+                    {/* Simulaciones */}
+                    {unitData.simulations && unitData.simulations.length > 0 && (
+                        <View style={styles.section}>
+                            <Text style={styles.sectionTitle}>{t('unit4.interactiveSimulations')}</Text>
+                            <Text style={styles.simulationsSubtitle}>
+                                {t('unit4.simulationsSubtitle')}
+                            </Text>
 
-                        <TouchableOpacity style={styles.simulationCard}>
-                            <View style={styles.simulationIcon}>
-                                <Text style={styles.simulationIconText}>⚡</Text>
-                            </View>
-                            <View style={styles.simulationInfo}>
-                                <Text style={styles.simulationName}>Simulación Lorem</Text>
-                                <Text style={styles.simulationDescription}>
-                                    Lorem ipsum dolor sit amet consectetur
-                                </Text>
-                            </View>
-                            <View style={styles.simulationArrow}>
-                                <Text style={styles.simulationArrowText}>→</Text>
-                            </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.simulationCard}>
-                            <View style={styles.simulationIcon}>
-                                <Text style={styles.simulationIconText}>⚡</Text>
-                            </View>
-                            <View style={styles.simulationInfo}>
-                                <Text style={styles.simulationName}>Simulación Ipsum</Text>
-                                <Text style={styles.simulationDescription}>
-                                    Sed do eiusmod tempor incididunt
-                                </Text>
-                            </View>
-                            <View style={styles.simulationArrow}>
-                                <Text style={styles.simulationArrowText}>→</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                            {unitData.simulations.map((simulation, index) => (
+                                <TouchableOpacity
+                                    key={index}
+                                    style={styles.simulationCard}
+                                    onPress={() => handleSimulationPress(simulation)}
+                                >
+                                    <View style={styles.simulationIcon}>
+                                        <Text style={styles.simulationIconText}>⚡</Text>
+                                    </View>
+                                    <View style={styles.simulationInfo}>
+                                        <Text style={styles.simulationName}>{simulation.name}</Text>
+                                        <Text style={styles.simulationDescription}>
+                                            {t('unit4.simulationDescription')}
+                                        </Text>
+                                    </View>
+                                    <View style={styles.simulationArrow}>
+                                        <Text style={styles.simulationArrowText}>→</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            ))}
+                        </View>
+                    )}
 
                     {/* Objetivos de Aprendizaje */}
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>🎯 Objetivos Lorem</Text>
+                        <Text style={styles.sectionTitle}>{t('unit4.learningObjectives')}</Text>
                         <View style={styles.objectivesCard}>
-                            {testContent.objectives.map((objective, index) => (
+                            {t('unit4.objectives').map((objective, index) => (
                                 <View key={index} style={styles.objective}>
                                     <Text style={styles.objectiveBullet}>•</Text>
-                                    <Text style={styles.objectiveText}>{objective}</Text>
+                                    <Text style={styles.objectiveText}>
+                                        {objective}
+                                    </Text>
                                 </View>
                             ))}
                         </View>

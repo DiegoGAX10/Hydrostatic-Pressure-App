@@ -3,7 +3,6 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { LanguageProvider } from './contexts/LanguageContext';
 import MainScreen from './interfaces/MainScreen';
 import Unit1Screen from './interfaces/units/Unit1Screen';
@@ -12,6 +11,8 @@ import Unit3Screen from './interfaces/units/Unit3Screen';
 import Unit4Screen from './interfaces/units/Unit4Screen';
 import Unit5Screen from './interfaces/units/Unit5Screen';
 import HydrostaticPressureScreen from './interfaces/simulations/HydrostaticPressureScreen';
+import FluidFlowScreen from './interfaces/simulations/FluidFlowScreen';
+import UnderPressureScreen from './interfaces/simulations/UnderPressureScreen';
 
 const Stack = createStackNavigator();
 
@@ -75,6 +76,20 @@ export default function App() {
                     component={HydrostaticPressureScreen}
                     options={{
                         title: 'Simulación: Presión Hidrostática'
+                    }}
+                />
+                <Stack.Screen
+                    name="FluidFlow"
+                    component={FluidFlowScreen}
+                    options={{
+                        title: 'Simulación: Flujo de Fluidos'
+                    }}
+                />
+                <Stack.Screen
+                    name="UnderPressure"
+                    component={UnderPressureScreen}
+                    options={{
+                        title: 'Simulación: Bajo Presión'
                     }}
                 />
             </Stack.Navigator>

@@ -36,15 +36,15 @@
       "trivia": "Trivia"
     },
     "unit3": {
-      "title": "Principio de Pascal",
-      "description": "Comprende cómo se transmite la presión en fluidos confinados",
+      "title": "Hidrodinámica",
+      "description": "Estudio del comportamiento de fluidos en movimiento",
       "lesson": "Lección",
       "exercise": "Ejercicio",
       "trivia": "Trivia"
     },
     "unit4": {
-      "title": "Principio de Arquímedes",
-      "description": "Flotación y fuerza de empuje en cuerpos sumergidos",
+      "title": "Presión en Fluidos",
+      "description": "Estudio de la presión, densidad y flotación en fluidos",
       "lesson": "Lección",
       "exercise": "Ejercicio",
       "trivia": "Trivia"
@@ -59,6 +59,8 @@
   },
   "simulation": {
     "hydrostaticPressure": "Presión Hidrostática",
+    "fluidFlow": "Flujo de Fluidos",
+    "underPressure": "Bajo Presión",
     "selectFluid": "Seleccionar Fluido:",
     "water": "Agua",
     "oil": "Aceite",
@@ -210,5 +212,190 @@
       "Aplicar principios de flotación y estabilidad",
       "Utilizar instrumentos de medición de presión"
     ]
+  },
+  "unit3": {
+    "generalDescription": "📚 Descripción General",
+    "description": "La hidrodinámica estudia el comportamiento de los fluidos en movimiento. Esta unidad explora los principios de conservación de masa y energía en flujos, la ecuación de continuidad, el principio de Bernoulli y sus aplicaciones prácticas en ingeniería.",
+    "studyTopics": "📖 Temas de Estudio",
+    "topics": [
+      "Ecuación de continuidad y conservación de masa",
+      "Tipos de flujo: laminar y turbulento",
+      "Principio de Bernoulli y conservación de energía",
+      "Teorema de Torricelli y vaciado de tanques",
+      "Efecto Venturi y medición de caudal",
+      "Tubo de Pitot y medición de velocidad",
+      "Pérdidas de energía en tuberías",
+      "Aplicaciones en sistemas de transporte de fluidos"
+    ],
+    "keyFormulas": "📐 Fórmulas Clave",
+    "formulas": [
+      {
+        "name": "Ecuación de Continuidad",
+        "formula": "A₁v₁ = A₂v₂ = Q",
+        "description": "El caudal se conserva en un flujo incompresible"
+      },
+      {
+        "name": "Principio de Bernoulli",
+        "formula": "P + ½pv² + pgh = constante",
+        "description": "Conservación de energía en flujo ideal"
+      },
+      {
+        "name": "Teorema de Torricelli",
+        "formula": "v = √(2gh)",
+        "description": "Velocidad de salida de un fluido por un orificio"
+      },
+      {
+        "name": "Caudal Volumétrico",
+        "formula": "Q = A × v",
+        "description": "Relación entre área, velocidad y caudal"
+      }
+    ],
+    "interactiveSimulations": "🧪 Simulaciones Interactivas",
+    "simulationsSubtitle": "Experimenta con simulaciones para visualizar el flujo de fluidos",
+    "simulationDescription": "Simulación interactiva de flujo de fluidos",
+    "learningObjectives": "🎯 Objetivos de Aprendizaje",
+    "objectives": [
+      "Comprender los principios de conservación de masa y energía en fluidos",
+      "Aplicar la ecuación de continuidad y el principio de Bernoulli",
+      "Analizar sistemas de tuberías y calcular presiones y velocidades",
+      "Resolver problemas de flujo en aplicaciones de ingeniería"
+    ]
+  },
+  "unit4": {
+    "generalDescription": "📚 Descripción General",
+    "description": "Esta unidad explora los conceptos fundamentales de presión en fluidos, densidad y el principio de Arquímedes. Aprende cómo interactúan los objetos con los fluidos, por qué algunos flotan y otros se hunden, y cómo la presión varía con la profundidad.",
+    "studyTopics": "📖 Temas de Estudio",
+    "topics": [
+      "Presión hidrostática y su relación con la profundidad",
+      "Densidad y peso específico de los fluidos",
+      "Principio de Arquímedes y fuerza de flotación",
+      "Condiciones de flotación y hundimiento",
+      "Presión atmosférica y presión absoluta",
+      "Medición de presiones con manómetros",
+      "Aplicaciones prácticas en ingeniería naval",
+      "Diseño de submarinos y estructuras flotantes"
+    ],
+    "keyFormulas": "📐 Fórmulas Clave",
+    "formulas": [
+      {
+        "name": "Presión Hidrostática",
+        "formula": "P = ρ × g × h",
+        "description": "Presión en función de densidad y profundidad"
+      },
+      {
+        "name": "Principio de Arquímedes",
+        "formula": "F_b = ρ_fluido × g × V",
+        "description": "Fuerza de flotación igual al peso del fluido desplazado"
+      },
+      {
+        "name": "Presión Absoluta",
+        "formula": "P_abs = P_atm + P_hidráulica",
+        "description": "Suma de presión atmosférica e hidrostática"
+      },
+      {
+        "name": "Densidad",
+        "formula": "ρ = m / V",
+        "description": "Relación entre masa y volumen"
+      }
+    ],
+    "interactiveSimulations": "🧪 Simulaciones Interactivas",
+    "simulationsSubtitle": "Experimenta con presión, densidad y flotación",
+    "simulationDescription": "Simulación interactiva de presión en fluidos",
+    "learningObjectives": "🎯 Objetivos de Aprendizaje",
+    "objectives": [
+      "Comprender cómo la presión varía con la profundidad en fluidos",
+      "Aplicar el principio de Arquímedes para calcular fuerzas de flotación",
+      "Predecir si un objeto flotará o se hundirá en diferentes fluidos",
+      "Analizar la relación entre densidad, presión y flotación"
+    ]
+  },
+  "fluidFlowSimulation": {
+    "title": "Flujo de Fluidos",
+    "controls": "⚙️ Controles",
+    "fluidType": "Tipo de Fluido",
+    "water": "Agua",
+    "oil": "Aceite",
+    "honey": "Miel",
+    "flowRate": "Caudal (L/s)",
+    "diameterSection1": "Diámetro Sección 1 (mm)",
+    "diameterSection2": "Diámetro Sección 2 (mm)",
+    "heightSection1": "Altura Sección 1 (cm)",
+    "heightSection2": "Altura Sección 2 (cm)",
+    "showParticles": "Mostrar Partículas",
+    "animateFlow": "Animar Flujo",
+    "results": "📊 Resultados",
+    "section1": "Sección 1",
+    "section2": "Sección 2",
+    "area": "Área:",
+    "velocity": "Velocidad:",
+    "pressure": "Presión:",
+    "height": "Altura:",
+    "observations": "💡 Observaciones",
+    "observation1": "• Cuando el área disminuye, la velocidad aumenta (Ecuación de Continuidad)",
+    "observation2": "• Donde la velocidad aumenta, la presión disminuye (Principio de Bernoulli)",
+    "observation3": "• La energía total del fluido se conserva a lo largo del flujo",
+    "fundamentalEquations": "📐 Ecuaciones Fundamentales",
+    "continuityEquation": "Ecuación de Continuidad",
+    "continuityFormula": "A₁ × v₁ = A₂ × v₂ = Q",
+    "continuityDescription": "El caudal (Q) se mantiene constante en un flujo incompresible",
+    "bernoulliEquation": "Ecuación de Bernoulli",
+    "bernoulliFormula": "P₁ + ½pv₁² + pgh₁ = P₂ + ½pv₂² + pgh₂",
+    "bernoulliDescription": "La suma de presión estática, dinámica y potencial se conserva",
+    "volumetricFlow": "Caudal Volumétrico",
+    "volumetricFormula": "Q = A × v",
+    "volumetricDescription": "Q = Caudal (m³/s), A = Área (m²), v = Velocidad (m/s)",
+    "referenceLevel": "Nivel de referencia"
+  },
+  "underPressureSimulation": {
+    "title": "Bajo Presión",
+    "controls": "⚙️ Controles",
+    "fluidType": "Tipo de Fluido",
+    "water": "Agua",
+    "oil": "Aceite",
+    "honey": "Miel",
+    "mercury": "Mercurio",
+    "gasoline": "Gasolina",
+    "maxDepth": "Profundidad Máxima del Tanque",
+    "selectObject": "Seleccionar Objeto",
+    "ball": "Pelota",
+    "brick": "Ladrillo",
+    "wood": "Madera",
+    "anchor": "Ancla",
+    "objectDepth": "Profundidad del Objeto",
+    "atmosphericPressure": "Presión Atmosférica",
+    "showManometer": "Mostrar Manómetro",
+    "showForces": "Mostrar Fuerzas",
+    "measurements": "Mediciones",
+    "fluidPressure": "Presión del Fluido",
+    "fluidDensity": "Densidad del fluido:",
+    "hydrostaticPressureBottom": "Presión hidrostática (fondo):",
+    "atmosphericPressureLabel": "Presión atmosférica:",
+    "absolutePressureBottom": "Presión absoluta (fondo):",
+    "objectAnalysis": "Análisis del Objeto",
+    "object": "Objeto:",
+    "mass": "Masa:",
+    "volume": "Volumen:",
+    "weight": "Peso:",
+    "buoyantForce": "Fuerza de flotación:",
+    "netForce": "Fuerza neta:",
+    "pressureAtObject": "Presión en el objeto:",
+    "willFloat": "El objeto FLOTARÁ",
+    "willSink": "El objeto SE HUNDIRÁ",
+    "observations": "💡 Observaciones",
+    "observation1": "• La presión aumenta linealmente con la profundidad",
+    "observation2": "• Fluidos más densos generan mayor presión a la misma profundidad",
+    "observation3": "• Un objeto flota cuando la fuerza de flotación supera su peso",
+    "observation4": "• La presión actúa en todas las direcciones por igual",
+    "equations": "📐 Ecuaciones",
+    "hydrostaticPressureTitle": "Presión Hidrostática",
+    "hydrostaticPressureFormula": "P = ρ × g × h",
+    "hydrostaticPressureDescription": "ρ = densidad del fluido, g = 9.81 m/s², h = profundidad",
+    "absolutePressureTitle": "Presión Absoluta",
+    "absolutePressureFormula": "P_abs = P_atm + P_hidrostática",
+    "absolutePressureDescription": "La presión total incluye la presión atmosférica",
+    "archimedesPrincipleTitle": "Principio de Arquímedes",
+    "archimedesPrincipleFormula": "F_b = ρ_fluido × g × V_objeto",
+    "archimedesPrincipleDescription": "La fuerza de flotación depende del volumen desplazado",
+    "manometer": "Manómetro"
   }
 }

@@ -59,6 +59,8 @@
   },
   "simulation": {
     "hydrostaticPressure": "Hydrostatischer Druck",
+    "fluidFlow": "Flüssigkeitsströmung",
+    "underPressure": "Unter Druck",
     "selectFluid": "Flüssigkeit auswählen:",
     "water": "Wasser",
     "oil": "Öl",
@@ -209,5 +211,190 @@
       "Anwenden von Auftrieb- und Stabilitätsprinzipien",
       "Verwenden von Druckmessgeräten"
     ]
+  },
+  "unit3": {
+    "generalDescription": "📚 Allgemeine Beschreibung",
+    "description": "Die Hydrodynamik untersucht das Verhalten von Flüssigkeiten in Bewegung. Diese Einheit erforscht die Prinzipien der Massen- und Energieerhaltung in Strömungen, die Kontinuitätsgleichung, das Bernoulli-Prinzip und deren praktische Anwendungen in der Technik.",
+    "studyTopics": "📖 Studienbereiche",
+    "topics": [
+      "Kontinuitätsgleichung und Massenerhaltung",
+      "Strömungsarten: laminar und turbulent",
+      "Bernoulli-Prinzip und Energieerhaltung",
+      "Torricelli-Theorem und Tankentleerung",
+      "Venturi-Effekt und Durchflussmessung",
+      "Pitot-Rohr und Geschwindigkeitsmessung",
+      "Energieverluste in Rohrleitungen",
+      "Anwendungen in Fluidtransportsystemen"
+    ],
+    "keyFormulas": "📐 Wichtige Formeln",
+    "formulas": [
+      {
+        "name": "Kontinuitätsgleichung",
+        "formula": "A₁v₁ = A₂v₂ = Q",
+        "description": "Die Durchflussrate bleibt bei inkompressibler Strömung erhalten"
+      },
+      {
+        "name": "Bernoulli-Prinzip",
+        "formula": "P + ½ρv² + ρgh = konstant",
+        "description": "Energieerhaltung in idealer Strömung"
+      },
+      {
+        "name": "Torricelli-Theorem",
+        "formula": "v = √(2gh)",
+        "description": "Austrittsgeschwindigkeit von Flüssigkeit durch eine Öffnung"
+      },
+      {
+        "name": "Volumetrische Durchflussrate",
+        "formula": "Q = A × v",
+        "description": "Beziehung zwischen Fläche, Geschwindigkeit und Durchflussrate"
+      }
+    ],
+    "interactiveSimulations": "🧪 Interaktive Simulationen",
+    "simulationsSubtitle": "Experimentieren Sie mit Simulationen zur Visualisierung von Flüssigkeitsströmungen",
+    "simulationDescription": "Interaktive Flüssigkeitsströmungssimulation",
+    "learningObjectives": "🎯 Lernziele",
+    "objectives": [
+      "Verstehen der Prinzipien der Massen- und Energieerhaltung in Flüssigkeiten",
+      "Anwenden der Kontinuitätsgleichung und des Bernoulli-Prinzips",
+      "Analysieren von Rohrsystemen und Berechnen von Drücken und Geschwindigkeiten",
+      "Lösen von Strömungsproblemen in technischen Anwendungen"
+    ]
+  },
+  "unit4": {
+    "generalDescription": "📚 Allgemeine Beschreibung",
+    "description": "Diese Einheit erforscht die grundlegenden Konzepte von Druck in Flüssigkeiten, Dichte und das Archimedische Prinzip. Lernen Sie, wie Objekte mit Flüssigkeiten interagieren, warum einige schwimmen und andere sinken, und wie der Druck mit der Tiefe variiert.",
+    "studyTopics": "📖 Studienbereiche",
+    "topics": [
+      "Hydrostatischer Druck und seine Beziehung zur Tiefe",
+      "Dichte und spezifisches Gewicht von Flüssigkeiten",
+      "Archimedisches Prinzip und Auftriebskraft",
+      "Bedingungen für Schwimmen und Sinken",
+      "Atmosphärendruck und Absolutdruck",
+      "Druckmessung mit Manometern",
+      "Praktische Anwendungen im Schiffbau",
+      "Konstruktion von U-Booten und schwimmenden Strukturen"
+    ],
+    "keyFormulas": "📐 Wichtige Formeln",
+    "formulas": [
+      {
+        "name": "Hydrostatischer Druck",
+        "formula": "P = ρ × g × h",
+        "description": "Druck als Funktion von Dichte und Tiefe"
+      },
+      {
+        "name": "Archimedisches Prinzip",
+        "formula": "F_b = ρ_Flüssigkeit × g × V",
+        "description": "Auftriebskraft entspricht dem Gewicht der verdrängten Flüssigkeit"
+      },
+      {
+        "name": "Absolutdruck",
+        "formula": "P_abs = P_atm + P_hydraulisch",
+        "description": "Summe aus Atmosphärendruck und hydrostatischem Druck"
+      },
+      {
+        "name": "Dichte",
+        "formula": "ρ = m / V",
+        "description": "Beziehung zwischen Masse und Volumen"
+      }
+    ],
+    "interactiveSimulations": "🧪 Interaktive Simulationen",
+    "simulationsSubtitle": "Experimentieren Sie mit Druck, Dichte und Auftrieb",
+    "simulationDescription": "Interaktive Simulation von Flüssigkeitsdruck",
+    "learningObjectives": "🎯 Lernziele",
+    "objectives": [
+      "Verstehen, wie der Druck mit der Tiefe in Flüssigkeiten variiert",
+      "Anwenden des Archimedischen Prinzips zur Berechnung von Auftriebskräften",
+      "Vorhersagen, ob ein Objekt in verschiedenen Flüssigkeiten schwimmt oder sinkt",
+      "Analysieren der Beziehung zwischen Dichte, Druck und Auftrieb"
+    ]
+  },
+  "fluidFlowSimulation": {
+    "title": "Flüssigkeitsströmung",
+    "controls": "⚙️ Steuerung",
+    "fluidType": "Flüssigkeitstyp",
+    "water": "Wasser",
+    "oil": "Öl",
+    "honey": "Honig",
+    "flowRate": "Durchflussrate (L/s)",
+    "diameterSection1": "Durchmesser Abschnitt 1 (mm)",
+    "diameterSection2": "Durchmesser Abschnitt 2 (mm)",
+    "heightSection1": "Höhe Abschnitt 1 (cm)",
+    "heightSection2": "Höhe Abschnitt 2 (cm)",
+    "showParticles": "Partikel anzeigen",
+    "animateFlow": "Strömung animieren",
+    "results": "📊 Ergebnisse",
+    "section1": "Abschnitt 1",
+    "section2": "Abschnitt 2",
+    "area": "Fläche:",
+    "velocity": "Geschwindigkeit:",
+    "pressure": "Druck:",
+    "height": "Höhe:",
+    "observations": "💡 Beobachtungen",
+    "observation1": "• Wenn die Fläche abnimmt, nimmt die Geschwindigkeit zu (Kontinuitätsgleichung)",
+    "observation2": "• Wo die Geschwindigkeit zunimmt, nimmt der Druck ab (Bernoulli-Prinzip)",
+    "observation3": "• Die Gesamtenergie der Flüssigkeit bleibt während der Strömung erhalten",
+    "fundamentalEquations": "📐 Grundlegende Gleichungen",
+    "continuityEquation": "Kontinuitätsgleichung",
+    "continuityFormula": "A₁ × v₁ = A₂ × v₂ = Q",
+    "continuityDescription": "Die Durchflussrate (Q) bleibt bei inkompressibler Strömung konstant",
+    "bernoulliEquation": "Bernoulli-Gleichung",
+    "bernoulliFormula": "P₁ + ½pv₁² + pgh₁ = P₂ + ½pv₂² + pgh₂",
+    "bernoulliDescription": "Die Summe aus statischem, dynamischem und potentiellem Druck bleibt erhalten",
+    "volumetricFlow": "Volumetrische Durchflussrate",
+    "volumetricFormula": "Q = A × v",
+    "volumetricDescription": "Q = Durchflussrate (m³/s), A = Fläche (m²), v = Geschwindigkeit (m/s)",
+    "referenceLevel": "Referenzniveau"
+  },
+  "underPressureSimulation": {
+    "title": "Unter Druck",
+    "controls": "⚙️ Steuerung",
+    "fluidType": "Flüssigkeitstyp",
+    "water": "Wasser",
+    "oil": "Öl",
+    "honey": "Honig",
+    "mercury": "Quecksilber",
+    "gasoline": "Benzin",
+    "maxDepth": "Maximale Tanktiefe",
+    "selectObject": "Objekt auswählen",
+    "ball": "Ball",
+    "brick": "Ziegel",
+    "wood": "Holz",
+    "anchor": "Anker",
+    "objectDepth": "Objekttiefe",
+    "atmosphericPressure": "Atmosphärendruck",
+    "showManometer": "Manometer anzeigen",
+    "showForces": "Kräfte anzeigen",
+    "measurements": "Messungen",
+    "fluidPressure": "Flüssigkeitsdruck",
+    "fluidDensity": "Flüssigkeitsdichte:",
+    "hydrostaticPressureBottom": "Hydrostatischer Druck (Boden):",
+    "atmosphericPressureLabel": "Atmosphärendruck:",
+    "absolutePressureBottom": "Absolutdruck (Boden):",
+    "objectAnalysis": "Objektanalyse",
+    "object": "Objekt:",
+    "mass": "Masse:",
+    "volume": "Volumen:",
+    "weight": "Gewicht:",
+    "buoyantForce": "Auftriebskraft:",
+    "netForce": "Nettokraft:",
+    "pressureAtObject": "Druck am Objekt:",
+    "willFloat": "Das Objekt wird SCHWIMMEN",
+    "willSink": "Das Objekt wird SINKEN",
+    "observations": "💡 Beobachtungen",
+    "observation1": "• Der Druck nimmt linear mit der Tiefe zu",
+    "observation2": "• Dichtere Flüssigkeiten erzeugen bei gleicher Tiefe höheren Druck",
+    "observation3": "• Ein Objekt schwimmt, wenn die Auftriebskraft sein Gewicht übersteigt",
+    "observation4": "• Druck wirkt gleichmäßig in alle Richtungen",
+    "equations": "📐 Gleichungen",
+    "hydrostaticPressureTitle": "Hydrostatischer Druck",
+    "hydrostaticPressureFormula": "P = ρ × g × h",
+    "hydrostaticPressureDescription": "ρ = Flüssigkeitsdichte, g = 9.81 m/s², h = Tiefe",
+    "absolutePressureTitle": "Absolutdruck",
+    "absolutePressureFormula": "P_abs = P_atm + P_hydrostatisch",
+    "absolutePressureDescription": "Gesamtdruck einschließlich Atmosphärendruck",
+    "archimedesPrincipleTitle": "Archimedisches Prinzip",
+    "archimedesPrincipleFormula": "F_b = ρ_Flüssigkeit × g × V_Objekt",
+    "archimedesPrincipleDescription": "Auftriebskraft hängt vom verdrängten Volumen ab",
+    "manometer": "Manometer"
   }
 }

@@ -59,6 +59,8 @@
   },
   "simulation": {
     "hydrostaticPressure": "Hydrostatic Pressure",
+    "fluidFlow": "Fluid Flow",
+    "underPressure": "Under Pressure",
     "selectFluid": "Select Fluid:",
     "water": "Water",
     "oil": "Oil",
@@ -210,5 +212,190 @@
       "Apply principles of buoyancy and stability",
       "Use pressure measurement instruments"
     ]
+  },
+  "unit3": {
+    "generalDescription": "📚 General Description",
+    "description": "Hydrodynamics studies the behavior of fluids in motion. This unit explores the principles of mass and energy conservation in flows, the continuity equation, Bernoulli's principle, and their practical applications in engineering.",
+    "studyTopics": "📖 Study Topics",
+    "topics": [
+      "Continuity equation and conservation of mass",
+      "Types of flow: laminar and turbulent",
+      "Bernoulli's principle and energy conservation",
+      "Torricelli's theorem and tank drainage",
+      "Venturi effect and flow measurement",
+      "Pitot tube and velocity measurement",
+      "Energy losses in pipes",
+      "Applications in fluid transport systems"
+    ],
+    "keyFormulas": "📐 Key Formulas",
+    "formulas": [
+      {
+        "name": "Continuity Equation",
+        "formula": "A₁v₁ = A₂v₂ = Q",
+        "description": "Flow rate is conserved in incompressible flow"
+      },
+      {
+        "name": "Bernoulli's Principle",
+        "formula": "P + ½ρv² + ρgh = constant",
+        "description": "Energy conservation in ideal flow"
+      },
+      {
+        "name": "Torricelli's Theorem",
+        "formula": "v = √(2gh)",
+        "description": "Exit velocity of fluid through an orifice"
+      },
+      {
+        "name": "Volumetric Flow Rate",
+        "formula": "Q = A × v",
+        "description": "Relationship between area, velocity, and flow rate"
+      }
+    ],
+    "interactiveSimulations": "🧪 Interactive Simulations",
+    "simulationsSubtitle": "Experiment with simulations to visualize fluid flow",
+    "simulationDescription": "Interactive fluid flow simulation",
+    "learningObjectives": "🎯 Learning Objectives",
+    "objectives": [
+      "Understand the principles of mass and energy conservation in fluids",
+      "Apply the continuity equation and Bernoulli's principle",
+      "Analyze pipe systems and calculate pressures and velocities",
+      "Solve flow problems in engineering applications"
+    ]
+  },
+  "unit4": {
+    "generalDescription": "📚 General Description",
+    "description": "This unit explores the fundamental concepts of pressure in fluids, density, and Archimedes' principle. Learn how objects interact with fluids, why some float and others sink, and how pressure varies with depth.",
+    "studyTopics": "📖 Study Topics",
+    "topics": [
+      "Hydrostatic pressure and its relationship with depth",
+      "Density and specific weight of fluids",
+      "Archimedes' principle and buoyant force",
+      "Conditions for floating and sinking",
+      "Atmospheric pressure and absolute pressure",
+      "Pressure measurement with manometers",
+      "Practical applications in naval engineering",
+      "Design of submarines and floating structures"
+    ],
+    "keyFormulas": "📐 Key Formulas",
+    "formulas": [
+      {
+        "name": "Hydrostatic Pressure",
+        "formula": "P = ρ × g × h",
+        "description": "Pressure as a function of density and depth"
+      },
+      {
+        "name": "Archimedes' Principle",
+        "formula": "F_b = ρ_fluid × g × V",
+        "description": "Buoyant force equals the weight of displaced fluid"
+      },
+      {
+        "name": "Absolute Pressure",
+        "formula": "P_abs = P_atm + P_hydraulic",
+        "description": "Sum of atmospheric and hydrostatic pressure"
+      },
+      {
+        "name": "Density",
+        "formula": "ρ = m / V",
+        "description": "Relationship between mass and volume"
+      }
+    ],
+    "interactiveSimulations": "🧪 Interactive Simulations",
+    "simulationsSubtitle": "Experiment with pressure, density, and buoyancy",
+    "simulationDescription": "Interactive simulation of fluid pressure",
+    "learningObjectives": "🎯 Learning Objectives",
+    "objectives": [
+      "Understand how pressure varies with depth in fluids",
+      "Apply Archimedes' principle to calculate buoyant forces",
+      "Predict whether an object will float or sink in different fluids",
+      "Analyze the relationship between density, pressure, and buoyancy"
+    ]
+  },
+  "fluidFlowSimulation": {
+    "title": "Fluid Flow",
+    "controls": "⚙️ Controls",
+    "fluidType": "Fluid Type",
+    "water": "Water",
+    "oil": "Oil",
+    "honey": "Honey",
+    "flowRate": "Flow Rate (L/s)",
+    "diameterSection1": "Section 1 Diameter (mm)",
+    "diameterSection2": "Section 2 Diameter (mm)",
+    "heightSection1": "Section 1 Height (cm)",
+    "heightSection2": "Section 2 Height (cm)",
+    "showParticles": "Show Particles",
+    "animateFlow": "Animate Flow",
+    "results": "📊 Results",
+    "section1": "Section 1",
+    "section2": "Section 2",
+    "area": "Area:",
+    "velocity": "Velocity:",
+    "pressure": "Pressure:",
+    "height": "Height:",
+    "observations": "💡 Observations",
+    "observation1": "• When area decreases, velocity increases (Continuity Equation)",
+    "observation2": "• Where velocity increases, pressure decreases (Bernoulli's Principle)",
+    "observation3": "• The total energy of the fluid is conserved throughout the flow",
+    "fundamentalEquations": "📐 Fundamental Equations",
+    "continuityEquation": "Continuity Equation",
+    "continuityFormula": "A₁ × v₁ = A₂ × v₂ = Q",
+    "continuityDescription": "Flow rate (Q) remains constant in incompressible flow",
+    "bernoulliEquation": "Bernoulli's Equation",
+    "bernoulliFormula": "P₁ + ½pv₁² + pgh₁ = P₂ + ½pv₂² + pgh₂",
+    "bernoulliDescription": "The sum of static, dynamic, and potential pressure is conserved",
+    "volumetricFlow": "Volumetric Flow Rate",
+    "volumetricFormula": "Q = A × v",
+    "volumetricDescription": "Q = Flow rate (m³/s), A = Area (m²), v = Velocity (m/s)",
+    "referenceLevel": "Reference level"
+  },
+  "underPressureSimulation": {
+    "title": "Under Pressure",
+    "controls": "⚙️ Controls",
+    "fluidType": "Fluid Type",
+    "water": "Water",
+    "oil": "Oil",
+    "honey": "Honey",
+    "mercury": "Mercury",
+    "gasoline": "Gasoline",
+    "maxDepth": "Maximum Tank Depth",
+    "selectObject": "Select Object",
+    "ball": "Ball",
+    "brick": "Brick",
+    "wood": "Wood",
+    "anchor": "Anchor",
+    "objectDepth": "Object Depth",
+    "atmosphericPressure": "Atmospheric Pressure",
+    "showManometer": "Show Manometer",
+    "showForces": "Show Forces",
+    "measurements": "Measurements",
+    "fluidPressure": "Fluid Pressure",
+    "fluidDensity": "Fluid density:",
+    "hydrostaticPressureBottom": "Hydrostatic pressure (bottom):",
+    "atmosphericPressureLabel": "Atmospheric pressure:",
+    "absolutePressureBottom": "Absolute pressure (bottom):",
+    "objectAnalysis": "Object Analysis",
+    "object": "Object:",
+    "mass": "Mass:",
+    "volume": "Volume:",
+    "weight": "Weight:",
+    "buoyantForce": "Buoyant force:",
+    "netForce": "Net force:",
+    "pressureAtObject": "Pressure at object:",
+    "willFloat": "The object will FLOAT",
+    "willSink": "The object will SINK",
+    "observations": "💡 Observations",
+    "observation1": "• Pressure increases linearly with depth",
+    "observation2": "• Denser fluids generate greater pressure at the same depth",
+    "observation3": "• An object floats when the buoyant force exceeds its weight",
+    "observation4": "• Pressure acts equally in all directions",
+    "equations": "📐 Equations",
+    "hydrostaticPressureTitle": "Hydrostatic Pressure",
+    "hydrostaticPressureFormula": "P = ρ × g × h",
+    "hydrostaticPressureDescription": "ρ = fluid density, g = 9.81 m/s², h = depth",
+    "absolutePressureTitle": "Absolute Pressure",
+    "absolutePressureFormula": "P_abs = P_atm + P_hydrostatic",
+    "absolutePressureDescription": "Total pressure includes atmospheric pressure",
+    "archimedesPrincipleTitle": "Archimedes' Principle",
+    "archimedesPrincipleFormula": "F_b = ρ_fluid × g × V_object",
+    "archimedesPrincipleDescription": "Buoyant force depends on displaced volume",
+    "manometer": "Manometer"
   }
 }

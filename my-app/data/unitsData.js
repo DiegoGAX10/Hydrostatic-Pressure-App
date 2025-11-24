@@ -31,6 +31,38 @@ export const getUnitsData = (t) => [
                 screen: "HydrostaticPressure"
             }
         ]
+    },
+    {
+        id: 3,
+        unit: "Unidad 3",
+        icon: "💨",
+        title: t('units.unit3.title'),
+        description: t('units.unit3.description'),
+        screen: "Unit3",
+        color: "#90CAF9",
+        topics: [],
+        simulations: [
+            {
+                name: t('simulation.fluidFlow'),
+                screen: "FluidFlow"
+            }
+        ]
+    },
+    {
+        id: 4,
+        unit: "Unidad 4",
+        icon: "⛓️",
+        title: t('units.unit4.title'),
+        description: t('units.unit4.description'),
+        screen: "Unit4",
+        color: "#64B5F6",
+        topics: [],
+        simulations: [
+            {
+                name: t('simulation.underPressure'),
+                screen: "UnderPressure"
+            }
+        ]
     }
 ];
 
@@ -62,6 +94,38 @@ export const unitsData = [
             {
                 name: "Presión Hidrostática",
                 screen: "HydrostaticPressure"
+            }
+        ]
+    },
+    {
+        id: 3,
+        unit: "Unidad 3",
+        icon: "💨",
+        title: "Hidrodinámica",
+        description: "Estudio del comportamiento de fluidos en movimiento",
+        screen: "Unit3",
+        color: "#90CAF9",
+        topics: [],
+        simulations: [
+            {
+                name: "Flujo de Fluidos",
+                screen: "FluidFlow"
+            }
+        ]
+    },
+    {
+        id: 4,
+        unit: "Unidad 4",
+        icon: "⛓️",
+        title: "Presión en Fluidos",
+        description: "Estudio de la presión, densidad y flotación en fluidos",
+        screen: "Unit4",
+        color: "#64B5F6",
+        topics: [],
+        simulations: [
+            {
+                name: "Bajo Presión",
+                screen: "UnderPressure"
             }
         ]
     }
