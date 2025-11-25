@@ -65,8 +65,8 @@
     "water": "Water",
     "oil": "Oil",
     "mercury": "Mercury",
-    "animate": "▶️ Animate",
-    "pause": "⏸️ Pause",
+    "animate": "▶ Animate",
+    "pause": "⏸ Pause",
     "measurements": "Measurements",
     "objectWeight": "Object weight:",
     "waterElevation": "Water elevation:",
@@ -107,7 +107,7 @@
     "excellentWork": "Excellent work!",
     "completedMatches": "You have correctly completed all the matches",
     "retry": "Retry",
-    "additionalExercise": "🎯 Additional Exercise",
+    "additionalExercise": " Additional Exercise",
     "practiceDescription": "Practice with the \"Drag and Drop\" exercise to reinforce the concepts",
     "questions": [
       {
@@ -189,9 +189,9 @@
     }
   },
   "unit2": {
-    "generalDescription": "📚 General Description",
+    "generalDescription": " General Description",
     "description": "Hydrostatics studies fluids at rest and the forces acting on them. This unit covers the fundamental concepts of pressure in static fluids, forces on submerged surfaces, and buoyancy principles.",
-    "studyTopics": "📖 Study Topics",
+    "studyTopics": " Study Topics",
     "topics": [
       "Hydrostatic pressure and its fundamental properties",
       "Fundamental equation of hydrostatics",
@@ -202,10 +202,10 @@
       "Manometry and pressure measurement",
       "Stability of floating bodies"
     ],
-    "interactiveSimulations": "🧪 Interactive Simulations",
+    "interactiveSimulations": " Interactive Simulations",
     "simulationsSubtitle": "Practice with simulations that will help you visualize the concepts",
     "simulationDescription": "Interactive simulation to better understand this topic",
-    "learningObjectives": "🎯 Learning Objectives",
+    "learningObjectives": " Learning Objectives",
     "objectives": [
       "Understand the fundamental principles of hydrostatics",
       "Calculate forces on submerged surfaces",
@@ -214,9 +214,9 @@
     ]
   },
   "unit3": {
-    "generalDescription": "📚 General Description",
+    "generalDescription": " General Description",
     "description": "Hydrodynamics studies the behavior of fluids in motion. This unit explores the principles of mass and energy conservation in flows, the continuity equation, Bernoulli's principle, and their practical applications in engineering.",
-    "studyTopics": "📖 Study Topics",
+    "studyTopics": " Study Topics",
     "topics": [
       "Continuity equation and conservation of mass",
       "Types of flow: laminar and turbulent",
@@ -227,7 +227,7 @@
       "Energy losses in pipes",
       "Applications in fluid transport systems"
     ],
-    "keyFormulas": "📐 Key Formulas",
+    "keyFormulas": " Key Formulas",
     "formulas": [
       {
         "name": "Continuity Equation",
@@ -250,10 +250,10 @@
         "description": "Relationship between area, velocity, and flow rate"
       }
     ],
-    "interactiveSimulations": "🧪 Interactive Simulations",
+    "interactiveSimulations": " Interactive Simulations",
     "simulationsSubtitle": "Experiment with simulations to visualize fluid flow",
     "simulationDescription": "Interactive fluid flow simulation",
-    "learningObjectives": "🎯 Learning Objectives",
+    "learningObjectives": " Learning Objectives",
     "objectives": [
       "Understand the principles of mass and energy conservation in fluids",
       "Apply the continuity equation and Bernoulli's principle",
@@ -262,9 +262,9 @@
     ]
   },
   "unit4": {
-    "generalDescription": "📚 General Description",
+    "generalDescription": " General Description",
     "description": "This unit explores the fundamental concepts of pressure in fluids, density, and Archimedes' principle. Learn how objects interact with fluids, why some float and others sink, and how pressure varies with depth.",
-    "studyTopics": "📖 Study Topics",
+    "studyTopics": " Study Topics",
     "topics": [
       "Hydrostatic pressure and its relationship with depth",
       "Density and specific weight of fluids",
@@ -275,7 +275,7 @@
       "Practical applications in naval engineering",
       "Design of submarines and floating structures"
     ],
-    "keyFormulas": "📐 Key Formulas",
+    "keyFormulas": " Key Formulas",
     "formulas": [
       {
         "name": "Hydrostatic Pressure",
@@ -298,10 +298,10 @@
         "description": "Relationship between mass and volume"
       }
     ],
-    "interactiveSimulations": "🧪 Interactive Simulations",
+    "interactiveSimulations": " Interactive Simulations",
     "simulationsSubtitle": "Experiment with pressure, density, and buoyancy",
     "simulationDescription": "Interactive simulation of fluid pressure",
-    "learningObjectives": "🎯 Learning Objectives",
+    "learningObjectives": " Learning Objectives",
     "objectives": [
       "Understand how pressure varies with depth in fluids",
       "Apply Archimedes' principle to calculate buoyant forces",
@@ -311,7 +311,7 @@
   },
   "fluidFlowSimulation": {
     "title": "Fluid Flow",
-    "controls": "⚙️ Controls",
+    "controls": "Controls",
     "fluidType": "Fluid Type",
     "water": "Water",
     "oil": "Oil",
@@ -323,18 +323,18 @@
     "heightSection2": "Section 2 Height (cm)",
     "showParticles": "Show Particles",
     "animateFlow": "Animate Flow",
-    "results": "📊 Results",
+    "results": " Results",
     "section1": "Section 1",
     "section2": "Section 2",
     "area": "Area:",
     "velocity": "Velocity:",
     "pressure": "Pressure:",
     "height": "Height:",
-    "observations": "💡 Observations",
+    "observations": " Observations",
     "observation1": "• When area decreases, velocity increases (Continuity Equation)",
     "observation2": "• Where velocity increases, pressure decreases (Bernoulli's Principle)",
     "observation3": "• The total energy of the fluid is conserved throughout the flow",
-    "fundamentalEquations": "📐 Fundamental Equations",
+    "fundamentalEquations": " Fundamental Equations",
     "continuityEquation": "Continuity Equation",
     "continuityFormula": "A₁ × v₁ = A₂ × v₂ = Q",
     "continuityDescription": "Flow rate (Q) remains constant in incompressible flow",
@@ -348,7 +348,7 @@
   },
   "underPressureSimulation": {
     "title": "Under Pressure",
-    "controls": "⚙️ Controls",
+    "controls": "Controls",
     "fluidType": "Fluid Type",
     "water": "Water",
     "oil": "Oil",
@@ -381,12 +381,12 @@
     "pressureAtObject": "Pressure at object:",
     "willFloat": "The object will FLOAT",
     "willSink": "The object will SINK",
-    "observations": "💡 Observations",
+    "observations": " Observations",
     "observation1": "• Pressure increases linearly with depth",
     "observation2": "• Denser fluids generate greater pressure at the same depth",
     "observation3": "• An object floats when the buoyant force exceeds its weight",
     "observation4": "• Pressure acts equally in all directions",
-    "equations": "📐 Equations",
+    "equations": " Equations",
     "hydrostaticPressureTitle": "Hydrostatic Pressure",
     "hydrostaticPressureFormula": "P = ρ × g × h",
     "hydrostaticPressureDescription": "ρ = fluid density, g = 9.81 m/s², h = depth",

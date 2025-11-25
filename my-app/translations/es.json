@@ -107,7 +107,7 @@
     "excellentWork": "¡Excelente trabajo!",
     "completedMatches": "Has completado correctamente todos los emparejamientos",
     "retry": "Reintentar",
-    "additionalExercise": "🎯 Ejercicio Adicional",
+    "additionalExercise": " Ejercicio Adicional",
     "practiceDescription": "Practica con el ejercicio de \"Arrastra y Une\" para reforzar los conceptos",
     "questions": [
       {
@@ -189,9 +189,9 @@
     }
   },
   "unit2": {
-    "generalDescription": "📚 Descripción General",
+    "generalDescription": " Descripción General",
     "description": "La hidrostática estudia los fluidos en reposo y las fuerzas que actúan sobre ellos. Esta unidad abarca los conceptos fundamentales de presión en fluidos estáticos, fuerzas sobre superficies sumergidas y principios de flotación.",
-    "studyTopics": "📖 Temas de Estudio",
+    "studyTopics": " Temas de Estudio",
     "topics": [
       "Presión hidrostática y sus propiedades fundamentales",
       "Ecuación fundamental de la hidrostática",
@@ -202,10 +202,10 @@
       "Manometría y medición de presiones",
       "Estabilidad de cuerpos flotantes"
     ],
-    "interactiveSimulations": "🧪 Simulaciones Interactivas",
+    "interactiveSimulations": "Simulaciones Interactivas",
     "simulationsSubtitle": "Practica con simulaciones que te ayudarán a visualizar los conceptos",
     "simulationDescription": "Simulación interactiva para comprender mejor este tema",
-    "learningObjectives": "🎯 Objetivos de Aprendizaje",
+    "learningObjectives": " Objetivos de Aprendizaje",
     "objectives": [
       "Comprender los principios fundamentales de la hidrostática",
       "Calcular fuerzas sobre superficies sumergidas",
@@ -214,9 +214,9 @@
     ]
   },
   "unit3": {
-    "generalDescription": "📚 Descripción General",
+    "generalDescription": " Descripción General",
     "description": "La hidrodinámica estudia el comportamiento de los fluidos en movimiento. Esta unidad explora los principios de conservación de masa y energía en flujos, la ecuación de continuidad, el principio de Bernoulli y sus aplicaciones prácticas en ingeniería.",
-    "studyTopics": "📖 Temas de Estudio",
+    "studyTopics": " Temas de Estudio",
     "topics": [
       "Ecuación de continuidad y conservación de masa",
       "Tipos de flujo: laminar y turbulento",
@@ -227,7 +227,7 @@
       "Pérdidas de energía en tuberías",
       "Aplicaciones en sistemas de transporte de fluidos"
     ],
-    "keyFormulas": "📐 Fórmulas Clave",
+    "keyFormulas": " Fórmulas Clave",
     "formulas": [
       {
         "name": "Ecuación de Continuidad",
@@ -250,10 +250,10 @@
         "description": "Relación entre área, velocidad y caudal"
       }
     ],
-    "interactiveSimulations": "🧪 Simulaciones Interactivas",
+    "interactiveSimulations": "Simulaciones Interactivas",
     "simulationsSubtitle": "Experimenta con simulaciones para visualizar el flujo de fluidos",
     "simulationDescription": "Simulación interactiva de flujo de fluidos",
-    "learningObjectives": "🎯 Objetivos de Aprendizaje",
+    "learningObjectives": " Objetivos de Aprendizaje",
     "objectives": [
       "Comprender los principios de conservación de masa y energía en fluidos",
       "Aplicar la ecuación de continuidad y el principio de Bernoulli",
@@ -262,9 +262,9 @@
     ]
   },
   "unit4": {
-    "generalDescription": "📚 Descripción General",
+    "generalDescription": " Descripción General",
     "description": "Esta unidad explora los conceptos fundamentales de presión en fluidos, densidad y el principio de Arquímedes. Aprende cómo interactúan los objetos con los fluidos, por qué algunos flotan y otros se hunden, y cómo la presión varía con la profundidad.",
-    "studyTopics": "📖 Temas de Estudio",
+    "studyTopics": " Temas de Estudio",
     "topics": [
       "Presión hidrostática y su relación con la profundidad",
       "Densidad y peso específico de los fluidos",
@@ -275,7 +275,7 @@
       "Aplicaciones prácticas en ingeniería naval",
       "Diseño de submarinos y estructuras flotantes"
     ],
-    "keyFormulas": "📐 Fórmulas Clave",
+    "keyFormulas": " Fórmulas Clave",
     "formulas": [
       {
         "name": "Presión Hidrostática",
@@ -298,10 +298,10 @@
         "description": "Relación entre masa y volumen"
       }
     ],
-    "interactiveSimulations": "🧪 Simulaciones Interactivas",
+    "interactiveSimulations": "Simulaciones Interactivas",
     "simulationsSubtitle": "Experimenta con presión, densidad y flotación",
     "simulationDescription": "Simulación interactiva de presión en fluidos",
-    "learningObjectives": "🎯 Objetivos de Aprendizaje",
+    "learningObjectives": " Objetivos de Aprendizaje",
     "objectives": [
       "Comprender cómo la presión varía con la profundidad en fluidos",
       "Aplicar el principio de Arquímedes para calcular fuerzas de flotación",
@@ -311,7 +311,7 @@
   },
   "fluidFlowSimulation": {
     "title": "Flujo de Fluidos",
-    "controls": "⚙️ Controles",
+    "controls": " Controles",
     "fluidType": "Tipo de Fluido",
     "water": "Agua",
     "oil": "Aceite",
@@ -323,18 +323,18 @@
     "heightSection2": "Altura Sección 2 (cm)",
     "showParticles": "Mostrar Partículas",
     "animateFlow": "Animar Flujo",
-    "results": "📊 Resultados",
+    "results": " Resultados",
     "section1": "Sección 1",
     "section2": "Sección 2",
     "area": "Área:",
     "velocity": "Velocidad:",
     "pressure": "Presión:",
     "height": "Altura:",
-    "observations": "💡 Observaciones",
+    "observations": " Observaciones",
     "observation1": "• Cuando el área disminuye, la velocidad aumenta (Ecuación de Continuidad)",
     "observation2": "• Donde la velocidad aumenta, la presión disminuye (Principio de Bernoulli)",
     "observation3": "• La energía total del fluido se conserva a lo largo del flujo",
-    "fundamentalEquations": "📐 Ecuaciones Fundamentales",
+    "fundamentalEquations": " Ecuaciones Fundamentales",
     "continuityEquation": "Ecuación de Continuidad",
     "continuityFormula": "A₁ × v₁ = A₂ × v₂ = Q",
     "continuityDescription": "El caudal (Q) se mantiene constante en un flujo incompresible",
@@ -348,7 +348,7 @@
   },
   "underPressureSimulation": {
     "title": "Bajo Presión",
-    "controls": "⚙️ Controles",
+    "controls": " Controles",
     "fluidType": "Tipo de Fluido",
     "water": "Agua",
     "oil": "Aceite",
@@ -381,12 +381,12 @@
     "pressureAtObject": "Presión en el objeto:",
     "willFloat": "El objeto FLOTARÁ",
     "willSink": "El objeto SE HUNDIRÁ",
-    "observations": "💡 Observaciones",
+    "observations": " Observaciones",
     "observation1": "• La presión aumenta linealmente con la profundidad",
     "observation2": "• Fluidos más densos generan mayor presión a la misma profundidad",
     "observation3": "• Un objeto flota cuando la fuerza de flotación supera su peso",
     "observation4": "• La presión actúa en todas las direcciones por igual",
-    "equations": "📐 Ecuaciones",
+    "equations": " Ecuaciones",
     "hydrostaticPressureTitle": "Presión Hidrostática",
     "hydrostaticPressureFormula": "P = ρ × g × h",
     "hydrostaticPressureDescription": "ρ = densidad del fluido, g = 9.81 m/s², h = profundidad",

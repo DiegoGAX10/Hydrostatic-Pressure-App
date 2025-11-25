@@ -65,8 +65,8 @@
     "water": "Wasser",
     "oil": "Öl",
     "mercury": "Quecksilber",
-    "animate": "▶️ Animieren",
-    "pause": "⏸️ Pausieren",
+    "animate": "▶ Animieren",
+    "pause": "⏸ Pausieren",
     "measurements": "Messungen",
     "objectWeight": "Objektgewicht:",
     "waterElevation": "Wasserhöhe:",
@@ -106,7 +106,7 @@
     "excellentWork": "Ausgezeichnete Arbeit!",
     "completedMatches": "Sie haben alle Zuordnungen korrekt abgeschlossen",
     "retry": "Wiederholen",
-    "additionalExercise": "🎯 Zusätzliche Übung",
+    "additionalExercise": " Zusätzliche Übung",
     "practiceDescription": "Üben Sie mit der \"Ziehen und Ablegen\"-Übung, um die Konzepte zu vertiefen",
     "questions": [
       {
@@ -188,9 +188,9 @@
     }
   },
   "unit2": {
-    "generalDescription": "📚 Allgemeine Beschreibung",
+    "generalDescription": " Allgemeine Beschreibung",
     "description": "Die Hydrostatik untersucht Flüssigkeiten in Ruhe und die auf sie wirkenden Kräfte. Diese Einheit behandelt die grundlegenden Konzepte des Drucks in statischen Flüssigkeiten, Kräfte auf untergetauchte Oberflächen und Auftriebsprinzipien.",
-    "studyTopics": "📖 Studienbereiche",
+    "studyTopics": " Studienbereiche",
     "topics": [
       "Hydrostatischer Druck und seine grundlegenden Eigenschaften",
       "Grundgleichung der Hydrostatik",
@@ -201,10 +201,10 @@
       "Manometrie und Druckmessung",
       "Stabilität schwimmender Körper"
     ],
-    "interactiveSimulations": "🧪 Interaktive Simulationen",
+    "interactiveSimulations": " Interaktive Simulationen",
     "simulationsSubtitle": "Üben Sie mit Simulationen, die Ihnen helfen, die Konzepte zu visualisieren",
     "simulationDescription": "Interaktive Simulation zum besseren Verständnis dieses Themas",
-    "learningObjectives": "🎯 Lernziele",
+    "learningObjectives": " Lernziele",
     "objectives": [
       "Verstehen der grundlegenden Prinzipien der Hydrostatik",
       "Berechnen von Kräften auf untergetauchte Oberflächen",
@@ -213,9 +213,9 @@
     ]
   },
   "unit3": {
-    "generalDescription": "📚 Allgemeine Beschreibung",
+    "generalDescription": " Allgemeine Beschreibung",
     "description": "Die Hydrodynamik untersucht das Verhalten von Flüssigkeiten in Bewegung. Diese Einheit erforscht die Prinzipien der Massen- und Energieerhaltung in Strömungen, die Kontinuitätsgleichung, das Bernoulli-Prinzip und deren praktische Anwendungen in der Technik.",
-    "studyTopics": "📖 Studienbereiche",
+    "studyTopics": " Studienbereiche",
     "topics": [
       "Kontinuitätsgleichung und Massenerhaltung",
       "Strömungsarten: laminar und turbulent",
@@ -226,7 +226,7 @@
       "Energieverluste in Rohrleitungen",
       "Anwendungen in Fluidtransportsystemen"
     ],
-    "keyFormulas": "📐 Wichtige Formeln",
+    "keyFormulas": " Wichtige Formeln",
     "formulas": [
       {
         "name": "Kontinuitätsgleichung",
@@ -249,10 +249,10 @@
         "description": "Beziehung zwischen Fläche, Geschwindigkeit und Durchflussrate"
       }
     ],
-    "interactiveSimulations": "🧪 Interaktive Simulationen",
+    "interactiveSimulations": " Interaktive Simulationen",
     "simulationsSubtitle": "Experimentieren Sie mit Simulationen zur Visualisierung von Flüssigkeitsströmungen",
     "simulationDescription": "Interaktive Flüssigkeitsströmungssimulation",
-    "learningObjectives": "🎯 Lernziele",
+    "learningObjectives": " Lernziele",
     "objectives": [
       "Verstehen der Prinzipien der Massen- und Energieerhaltung in Flüssigkeiten",
       "Anwenden der Kontinuitätsgleichung und des Bernoulli-Prinzips",
@@ -261,9 +261,9 @@
     ]
   },
   "unit4": {
-    "generalDescription": "📚 Allgemeine Beschreibung",
+    "generalDescription": " Allgemeine Beschreibung",
     "description": "Diese Einheit erforscht die grundlegenden Konzepte von Druck in Flüssigkeiten, Dichte und das Archimedische Prinzip. Lernen Sie, wie Objekte mit Flüssigkeiten interagieren, warum einige schwimmen und andere sinken, und wie der Druck mit der Tiefe variiert.",
-    "studyTopics": "📖 Studienbereiche",
+    "studyTopics": " Studienbereiche",
     "topics": [
       "Hydrostatischer Druck und seine Beziehung zur Tiefe",
       "Dichte und spezifisches Gewicht von Flüssigkeiten",
@@ -274,7 +274,7 @@
       "Praktische Anwendungen im Schiffbau",
       "Konstruktion von U-Booten und schwimmenden Strukturen"
     ],
-    "keyFormulas": "📐 Wichtige Formeln",
+    "keyFormulas": " Wichtige Formeln",
     "formulas": [
       {
         "name": "Hydrostatischer Druck",
@@ -297,10 +297,10 @@
         "description": "Beziehung zwischen Masse und Volumen"
       }
     ],
-    "interactiveSimulations": "🧪 Interaktive Simulationen",
+    "interactiveSimulations": " Interaktive Simulationen",
     "simulationsSubtitle": "Experimentieren Sie mit Druck, Dichte und Auftrieb",
     "simulationDescription": "Interaktive Simulation von Flüssigkeitsdruck",
-    "learningObjectives": "🎯 Lernziele",
+    "learningObjectives": " Lernziele",
     "objectives": [
       "Verstehen, wie der Druck mit der Tiefe in Flüssigkeiten variiert",
       "Anwenden des Archimedischen Prinzips zur Berechnung von Auftriebskräften",
@@ -310,7 +310,7 @@
   },
   "fluidFlowSimulation": {
     "title": "Flüssigkeitsströmung",
-    "controls": "⚙️ Steuerung",
+    "controls": " Steuerung",
     "fluidType": "Flüssigkeitstyp",
     "water": "Wasser",
     "oil": "Öl",
@@ -322,18 +322,18 @@
     "heightSection2": "Höhe Abschnitt 2 (cm)",
     "showParticles": "Partikel anzeigen",
     "animateFlow": "Strömung animieren",
-    "results": "📊 Ergebnisse",
+    "results": " Ergebnisse",
     "section1": "Abschnitt 1",
     "section2": "Abschnitt 2",
     "area": "Fläche:",
     "velocity": "Geschwindigkeit:",
     "pressure": "Druck:",
     "height": "Höhe:",
-    "observations": "💡 Beobachtungen",
+    "observations": " Beobachtungen",
     "observation1": "• Wenn die Fläche abnimmt, nimmt die Geschwindigkeit zu (Kontinuitätsgleichung)",
     "observation2": "• Wo die Geschwindigkeit zunimmt, nimmt der Druck ab (Bernoulli-Prinzip)",
     "observation3": "• Die Gesamtenergie der Flüssigkeit bleibt während der Strömung erhalten",
-    "fundamentalEquations": "📐 Grundlegende Gleichungen",
+    "fundamentalEquations": " Grundlegende Gleichungen",
     "continuityEquation": "Kontinuitätsgleichung",
     "continuityFormula": "A₁ × v₁ = A₂ × v₂ = Q",
     "continuityDescription": "Die Durchflussrate (Q) bleibt bei inkompressibler Strömung konstant",
@@ -347,7 +347,7 @@
   },
   "underPressureSimulation": {
     "title": "Unter Druck",
-    "controls": "⚙️ Steuerung",
+    "controls": " Steuerung",
     "fluidType": "Flüssigkeitstyp",
     "water": "Wasser",
     "oil": "Öl",
@@ -380,12 +380,12 @@
     "pressureAtObject": "Druck am Objekt:",
     "willFloat": "Das Objekt wird SCHWIMMEN",
     "willSink": "Das Objekt wird SINKEN",
-    "observations": "💡 Beobachtungen",
+    "observations": " Beobachtungen",
     "observation1": "• Der Druck nimmt linear mit der Tiefe zu",
     "observation2": "• Dichtere Flüssigkeiten erzeugen bei gleicher Tiefe höheren Druck",
     "observation3": "• Ein Objekt schwimmt, wenn die Auftriebskraft sein Gewicht übersteigt",
     "observation4": "• Druck wirkt gleichmäßig in alle Richtungen",
-    "equations": "📐 Gleichungen",
+    "equations": " Gleichungen",
     "hydrostaticPressureTitle": "Hydrostatischer Druck",
     "hydrostaticPressureFormula": "P = ρ × g × h",
     "hydrostaticPressureDescription": "ρ = Flüssigkeitsdichte, g = 9.81 m/s², h = Tiefe",
