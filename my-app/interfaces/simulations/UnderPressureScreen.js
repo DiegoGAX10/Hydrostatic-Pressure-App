@@ -34,40 +34,40 @@ const UnderPressureScreen = ({ navigation }) => {
         water: { 
             density: 1000, 
             color: '#2196F3', 
-            name: 'Agua',
+            name: t('underPressureSimulation.water'),
             gradient: ['#64B5F6', '#1976D2']
         },
         oil: { 
             density: 920, 
             color: '#FF9800', 
-            name: 'Aceite',
+            name: t('underPressureSimulation.oil'),
             gradient: ['#FFB74D', '#F57C00']
         },
         honey: { 
             density: 1420, 
             color: '#FFA726', 
-            name: 'Miel',
+            name: t('underPressureSimulation.honey'),
             gradient: ['#FFCA28', '#F57F17']
         },
         mercury: { 
             density: 13600, 
             color: '#9E9E9E', 
-            name: 'Mercurio',
+            name: t('underPressureSimulation.mercury'),
             gradient: ['#BDBDBD', '#616161']
         },
         gasoline: { 
             density: 680, 
             color: '#4CAF50', 
-            name: 'Gasolina',
+            name: t('underPressureSimulation.gasoline'),
             gradient: ['#81C784', '#388E3C']
         }
     };
 
     const objects = {
-        ball: { name: 'Pelota', volume: 0.00524, mass: 0.4, icon: '⚽' },
-        brick: { name: 'Ladrillo', volume: 0.002, mass: 4, icon: '🧱' },
-        wood: { name: 'Madera', volume: 0.008, mass: 4, icon: '🪵' },
-        anchor: { name: 'Ancla', volume: 0.01, mass: 100, icon: '⚓' }
+        ball: { name: t('underPressureSimulation.ball'), volume: 0.00524, mass: 0.4, icon: '⚽' },
+        brick: { name: t('underPressureSimulation.brick'), volume: 0.002, mass: 4, icon: '🧱' },
+        wood: { name: t('underPressureSimulation.wood'), volume: 0.008, mass: 4, icon: '🪵' },
+        anchor: { name: t('underPressureSimulation.anchor'), volume: 0.01, mass: 100, icon: '⚓' }
     };
 
     // Cálculos de presión
@@ -110,7 +110,7 @@ const UnderPressureScreen = ({ navigation }) => {
                 >
                     <Text style={styles.backButtonText}>← {t('common.back')}</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>Bajo Presión</Text>
+                <Text style={styles.headerTitle}>{t('underPressureSimulation.title')}</Text>
             </View>
 
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -306,7 +306,7 @@ const UnderPressureScreen = ({ navigation }) => {
                                         textAnchor="middle"
                                         fontWeight="bold"
                                     >
-                                        Manómetro
+                                        {t('underPressureSimulation.manometer')}
                                     </SvgText>
                                 </>
                             )}
@@ -337,11 +337,11 @@ const UnderPressureScreen = ({ navigation }) => {
 
                 {/* Controles */}
                 <View style={styles.controlsSection}>
-                    <Text style={styles.sectionTitle}>⚙️ Controles</Text>
+                    <Text style={styles.sectionTitle}>{t('underPressureSimulation.controls')}</Text>
 
                     {/* Selector de fluido */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Tipo de Fluido</Text>
+                        <Text style={styles.controlLabel}>{t('underPressureSimulation.fluidType')}</Text>
                         <View style={styles.fluidButtonsGrid}>
                             {Object.entries(fluids).map(([key, fluid]) => (
                                 <TouchableOpacity
@@ -361,7 +361,7 @@ const UnderPressureScreen = ({ navigation }) => {
 
                     {/* Control de profundidad máxima */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Profundidad Máxima del Tanque: {depth.toFixed(1)} m</Text>
+                        <Text style={styles.controlLabel}>{t('underPressureSimulation.maxDepth')}: {depth.toFixed(1)} m</Text>
                         <View style={styles.sliderButtons}>
                             <TouchableOpacity 
                                 style={styles.adjustButton}
@@ -383,7 +383,7 @@ const UnderPressureScreen = ({ navigation }) => {
 
                     {/* Selector de objeto */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Seleccionar Objeto</Text>
+                        <Text style={styles.controlLabel}>{t('underPressureSimulation.selectObject')}</Text>
                         <View style={styles.objectButtonsGrid}>
                             {Object.entries(objects).map(([key, obj]) => (
                                 <TouchableOpacity
@@ -403,7 +403,7 @@ const UnderPressureScreen = ({ navigation }) => {
 
                     {/* Control de profundidad del objeto */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Profundidad del Objeto: {objectDepth.toFixed(1)} m</Text>
+                        <Text style={styles.controlLabel}>{t('underPressureSimulation.objectDepth')}: {objectDepth.toFixed(1)} m</Text>
                         <View style={styles.sliderButtons}>
                             <TouchableOpacity 
                                 style={styles.adjustButton}
@@ -425,7 +425,7 @@ const UnderPressureScreen = ({ navigation }) => {
 
                     {/* Control de presión atmosférica */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Presión Atmosférica: {atmosphericPressure.toFixed(1)} kPa</Text>
+                        <Text style={styles.controlLabel}>{t('underPressureSimulation.atmosphericPressure')}: {atmosphericPressure.toFixed(1)} kPa</Text>
                         <View style={styles.sliderButtons}>
                             <TouchableOpacity 
                                 style={styles.adjustButton}
@@ -448,7 +448,7 @@ const UnderPressureScreen = ({ navigation }) => {
                     {/* Toggles */}
                     <View style={styles.controlCard}>
                         <View style={styles.switchRow}>
-                            <Text style={styles.controlLabel}>Mostrar Manómetro</Text>
+                            <Text style={styles.controlLabel}>{t('underPressureSimulation.showManometer')}</Text>
                             <Switch
                                 value={showPressureGauge}
                                 onValueChange={setShowPressureGauge}
@@ -460,7 +460,7 @@ const UnderPressureScreen = ({ navigation }) => {
 
                     <View style={styles.controlCard}>
                         <View style={styles.switchRow}>
-                            <Text style={styles.controlLabel}>Mostrar Fuerzas</Text>
+                            <Text style={styles.controlLabel}>{t('underPressureSimulation.showForces')}</Text>
                             <Switch
                                 value={showForces}
                                 onValueChange={setShowForces}
@@ -473,109 +473,109 @@ const UnderPressureScreen = ({ navigation }) => {
 
                 {/* Resultados */}
                 <View style={styles.resultsSection}>
-                    <Text style={styles.sectionTitle}>Mediciones</Text>
+                    <Text style={styles.sectionTitle}>{t('underPressureSimulation.measurements')}</Text>
                     
                     <View style={styles.resultCard}>
-                        <Text style={styles.resultCardTitle}>Presión del Fluido</Text>
+                        <Text style={styles.resultCardTitle}>{t('underPressureSimulation.fluidPressure')}</Text>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Densidad del fluido:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.fluidDensity')}</Text>
                             <Text style={styles.resultValue}>{fluidDensity} kg/m³</Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Presión hidrostática (fondo):</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.hydrostaticPressureBottom')}</Text>
                             <Text style={styles.resultValue}>{formatPressure(hydrostaticPressure)}</Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Presión atmosférica:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.atmosphericPressureLabel')}</Text>
                             <Text style={styles.resultValue}>{formatPressure(atmosphericPressure * 1000)}</Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Presión absoluta (fondo):</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.absolutePressureBottom')}</Text>
                             <Text style={[styles.resultValue, styles.resultHighlight]}>{formatPressure(absolutePressure)}</Text>
                         </View>
                     </View>
 
                     <View style={styles.resultCard}>
-                        <Text style={styles.resultCardTitle}>Análisis del Objeto</Text>
+                        <Text style={styles.resultCardTitle}>{t('underPressureSimulation.objectAnalysis')}</Text>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Objeto:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.object')}</Text>
                             <Text style={styles.resultValue}>{objectData.icon} {objectData.name}</Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Masa:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.mass')}</Text>
                             <Text style={styles.resultValue}>{objectData.mass} kg</Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Volumen:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.volume')}</Text>
                             <Text style={styles.resultValue}>{(objectData.volume * 1000).toFixed(2)} L</Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Peso:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.weight')}</Text>
                             <Text style={styles.resultValue}>{formatForce(objectWeight)}</Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Fuerza de flotación:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.buoyantForce')}</Text>
                             <Text style={styles.resultValue}>{formatForce(buoyantForce)}</Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Fuerza neta:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.netForce')}</Text>
                             <Text style={[styles.resultValue, { color: netForce > 0 ? '#4CAF50' : '#F44336' }]}>
                                 {formatForce(netForce)} {netForce > 0 ? '↑' : '↓'}
                             </Text>
                         </View>
                         <View style={styles.resultRow}>
-                            <Text style={styles.resultLabel}>Presión en el objeto:</Text>
+                            <Text style={styles.resultLabel}>{t('underPressureSimulation.pressureAtObject')}</Text>
                             <Text style={styles.resultValue}>{formatPressure(pressureAtObject + atmosphericPressure * 1000)}</Text>
                         </View>
                         <View style={[styles.statusBadge, { backgroundColor: willFloat ? '#4CAF50' : '#F44336' }]}>
                             <Text style={styles.statusText}>
-                                {willFloat ? 'El objeto FLOTARÁ' : 'El objeto SE HUNDIRÁ'}
+                                {willFloat ? t('underPressureSimulation.willFloat') : t('underPressureSimulation.willSink')}
                             </Text>
                         </View>
                     </View>
 
                     <View style={styles.infoCard}>
-                        <Text style={styles.infoTitle}>💡 Observaciones</Text>
+                        <Text style={styles.infoTitle}>{t('underPressureSimulation.observations')}</Text>
                         <Text style={styles.infoText}>
-                            • La presión aumenta linealmente con la profundidad
+                            {t('underPressureSimulation.observation1')}
                         </Text>
                         <Text style={styles.infoText}>
-                            • Fluidos más densos generan mayor presión a la misma profundidad
+                            {t('underPressureSimulation.observation2')}
                         </Text>
                         <Text style={styles.infoText}>
-                            • Un objeto flota cuando la fuerza de flotación supera su peso
+                            {t('underPressureSimulation.observation3')}
                         </Text>
                         <Text style={styles.infoText}>
-                            • La presión actúa en todas las direcciones por igual
+                            {t('underPressureSimulation.observation4')}
                         </Text>
                     </View>
                 </View>
 
                 {/* Fórmulas */}
                 <View style={styles.formulaSection}>
-                    <Text style={styles.sectionTitle}> Ecuaciones</Text>
+                    <Text style={styles.sectionTitle}>{t('underPressureSimulation.equations')}</Text>
                     
                     <View style={styles.formulaCard}>
-                        <Text style={styles.formulaTitle}>Presión Hidrostática</Text>
-                        <Text style={styles.formula}>P = ρ × g × h</Text>
+                        <Text style={styles.formulaTitle}>{t('underPressureSimulation.hydrostaticPressureTitle')}</Text>
+                        <Text style={styles.formula}>{t('underPressureSimulation.hydrostaticPressureFormula')}</Text>
                         <Text style={styles.formulaDescription}>
-                            ρ = densidad del fluido, g = 9.81 m/s², h = profundidad
+                            {t('underPressureSimulation.hydrostaticPressureDescription')}
                         </Text>
                     </View>
 
                     <View style={styles.formulaCard}>
-                        <Text style={styles.formulaTitle}>Presión Absoluta</Text>
-                        <Text style={styles.formula}>P_abs = P_atm + P_hidrostática</Text>
+                        <Text style={styles.formulaTitle}>{t('underPressureSimulation.absolutePressureTitle')}</Text>
+                        <Text style={styles.formula}>{t('underPressureSimulation.absolutePressureFormula')}</Text>
                         <Text style={styles.formulaDescription}>
-                            La presión total incluye la presión atmosférica
+                            {t('underPressureSimulation.absolutePressureDescription')}
                         </Text>
                     </View>
 
                     <View style={styles.formulaCard}>
-                        <Text style={styles.formulaTitle}>Principio de Arquímedes</Text>
-                        <Text style={styles.formula}>F_b = ρ_fluido × g × V_objeto</Text>
+                        <Text style={styles.formulaTitle}>{t('underPressureSimulation.archimedesPrincipleTitle')}</Text>
+                        <Text style={styles.formula}>{t('underPressureSimulation.archimedesPrincipleFormula')}</Text>
                         <Text style={styles.formulaDescription}>
-                            La fuerza de flotación depende del volumen desplazado
+                            {t('underPressureSimulation.archimedesPrincipleDescription')}
                         </Text>
                     </View>
                 </View>

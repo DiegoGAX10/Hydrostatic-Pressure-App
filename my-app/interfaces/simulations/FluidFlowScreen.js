@@ -42,9 +42,9 @@ const FluidFlowScreen = ({ navigation }) => {
     const particleIdCounter = useRef(0);
 
     const fluids = {
-        water: { density: 1000, color: '#2196F3', name: 'Agua', viscosity: 0.001 },
-        oil: { density: 920, color: '#FF9800', name: 'Aceite', viscosity: 0.1 },
-        honey: { density: 1420, color: '#FFA726', name: 'Miel', viscosity: 10 }
+        water: { density: 1000, color: '#2196F3', name: t('fluidFlowSimulation.water'), viscosity: 0.001 },
+        oil: { density: 920, color: '#FF9800', name: t('fluidFlowSimulation.oil'), viscosity: 0.1 },
+        honey: { density: 1420, color: '#FFA726', name: t('fluidFlowSimulation.honey'), viscosity: 10 }
     };
 
     // Convertir diámetros de pixels a metros para cálculos
@@ -181,7 +181,7 @@ const FluidFlowScreen = ({ navigation }) => {
                 >
                     <Text style={styles.backButtonText}>← {t('common.back')}</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>Flujo de Fluidos</Text>
+                <Text style={styles.headerTitle}>{t('fluidFlowSimulation.title')}</Text>
             </View>
 
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -246,7 +246,7 @@ const FluidFlowScreen = ({ navigation }) => {
                                 strokeDasharray="5,5"
                             />
                             <SvgText x="10" y="255" fontSize="12" fill="#666">
-                                Nivel de referencia
+                                {t('fluidFlowSimulation.referenceLevel')}
                             </SvgText>
 
                             {/* Indicadores de altura */}
@@ -312,7 +312,7 @@ const FluidFlowScreen = ({ navigation }) => {
                                 fontWeight="bold"
                                 textAnchor="middle"
                             >
-                                Sección 1
+                                {t('fluidFlowSimulation.section1')}
                             </SvgText>
                             <SvgText 
                                 x={20 + PIPE_WIDTH * 0.7} 
@@ -322,7 +322,7 @@ const FluidFlowScreen = ({ navigation }) => {
                                 fontWeight="bold"
                                 textAnchor="middle"
                             >
-                                Sección 2
+                                {t('fluidFlowSimulation.section2')}
                             </SvgText>
 
                             {/* Flechas de velocidad */}
@@ -344,11 +344,11 @@ const FluidFlowScreen = ({ navigation }) => {
 
                 {/* Controles */}
                 <View style={styles.controlsSection}>
-                    <Text style={styles.sectionTitle}>⚙️ Controles</Text>
+                    <Text style={styles.sectionTitle}>{t('fluidFlowSimulation.controls')}</Text>
 
                     {/* Selector de fluido */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Tipo de Fluido</Text>
+                        <Text style={styles.controlLabel}>{t('fluidFlowSimulation.fluidType')}</Text>
                         <View style={styles.fluidButtons}>
                             {Object.entries(fluids).map(([key, fluid]) => (
                                 <TouchableOpacity
@@ -368,7 +368,7 @@ const FluidFlowScreen = ({ navigation }) => {
 
                     {/* Control de caudal */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Caudal (L/s): {flowRate.toFixed(1)}</Text>
+                        <Text style={styles.controlLabel}>{t('fluidFlowSimulation.flowRate')}: {flowRate.toFixed(1)}</Text>
                         <View style={styles.sliderButtons}>
                             <TouchableOpacity 
                                 style={styles.adjustButton}
@@ -390,7 +390,7 @@ const FluidFlowScreen = ({ navigation }) => {
 
                     {/* Control de diámetros */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Diámetro Sección 1 (mm): {diameter1}</Text>
+                        <Text style={styles.controlLabel}>{t('fluidFlowSimulation.diameterSection1')}: {diameter1}</Text>
                         <View style={styles.sliderButtons}>
                             <TouchableOpacity 
                                 style={styles.adjustButton}
@@ -411,7 +411,7 @@ const FluidFlowScreen = ({ navigation }) => {
                     </View>
 
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Diámetro Sección 2 (mm): {diameter2}</Text>
+                        <Text style={styles.controlLabel}>{t('fluidFlowSimulation.diameterSection2')}: {diameter2}</Text>
                         <View style={styles.sliderButtons}>
                             <TouchableOpacity 
                                 style={styles.adjustButton}
@@ -433,7 +433,7 @@ const FluidFlowScreen = ({ navigation }) => {
 
                     {/* Control de alturas */}
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Altura Sección 1 (cm): {height1}</Text>
+                        <Text style={styles.controlLabel}>{t('fluidFlowSimulation.heightSection1')}: {height1}</Text>
                         <View style={styles.sliderButtons}>
                             <TouchableOpacity 
                                 style={styles.adjustButton}
@@ -454,7 +454,7 @@ const FluidFlowScreen = ({ navigation }) => {
                     </View>
 
                     <View style={styles.controlCard}>
-                        <Text style={styles.controlLabel}>Altura Sección 2 (cm): {height2}</Text>
+                        <Text style={styles.controlLabel}>{t('fluidFlowSimulation.heightSection2')}: {height2}</Text>
                         <View style={styles.sliderButtons}>
                             <TouchableOpacity 
                                 style={styles.adjustButton}
@@ -477,7 +477,7 @@ const FluidFlowScreen = ({ navigation }) => {
                     {/* Toggle de partículas */}
                     <View style={styles.controlCard}>
                         <View style={styles.switchRow}>
-                            <Text style={styles.controlLabel}>Mostrar Partículas</Text>
+                            <Text style={styles.controlLabel}>{t('fluidFlowSimulation.showParticles')}</Text>
                             <Switch
                                 value={showParticles}
                                 onValueChange={setShowParticles}
@@ -490,7 +490,7 @@ const FluidFlowScreen = ({ navigation }) => {
                     {/* Toggle de animación */}
                     <View style={styles.controlCard}>
                         <View style={styles.switchRow}>
-                            <Text style={styles.controlLabel}>Animar Flujo</Text>
+                            <Text style={styles.controlLabel}>{t('fluidFlowSimulation.animateFlow')}</Text>
                             <Switch
                                 value={isAnimating}
                                 onValueChange={setIsAnimating}
@@ -503,89 +503,89 @@ const FluidFlowScreen = ({ navigation }) => {
 
                 {/* Resultados */}
                 <View style={styles.resultsSection}>
-                    <Text style={styles.sectionTitle}>📊 Resultados</Text>
+                    <Text style={styles.sectionTitle}>{t('fluidFlowSimulation.results')}</Text>
                     
                     <View style={styles.resultGrid}>
                         <View style={styles.resultCard}>
-                            <Text style={styles.resultTitle}>Sección 1</Text>
+                            <Text style={styles.resultTitle}>{t('fluidFlowSimulation.section1')}</Text>
                             <View style={styles.resultRow}>
-                                <Text style={styles.resultLabel}>Área:</Text>
+                                <Text style={styles.resultLabel}>{t('fluidFlowSimulation.area')}</Text>
                                 <Text style={styles.resultValue}>{(area1 * 10000).toFixed(2)} cm²</Text>
                             </View>
                             <View style={styles.resultRow}>
-                                <Text style={styles.resultLabel}>Velocidad:</Text>
+                                <Text style={styles.resultLabel}>{t('fluidFlowSimulation.velocity')}</Text>
                                 <Text style={styles.resultValue}>{formatVelocity(velocity1)}</Text>
                             </View>
                             <View style={styles.resultRow}>
-                                <Text style={styles.resultLabel}>Presión:</Text>
+                                <Text style={styles.resultLabel}>{t('fluidFlowSimulation.pressure')}</Text>
                                 <Text style={styles.resultValue}>{formatPressure(pressure1)}</Text>
                             </View>
                             <View style={styles.resultRow}>
-                                <Text style={styles.resultLabel}>Altura:</Text>
+                                <Text style={styles.resultLabel}>{t('fluidFlowSimulation.height')}</Text>
                                 <Text style={styles.resultValue}>{height1} cm</Text>
                             </View>
                         </View>
 
                         <View style={styles.resultCard}>
-                            <Text style={styles.resultTitle}>Sección 2</Text>
+                            <Text style={styles.resultTitle}>{t('fluidFlowSimulation.section2')}</Text>
                             <View style={styles.resultRow}>
-                                <Text style={styles.resultLabel}>Área:</Text>
+                                <Text style={styles.resultLabel}>{t('fluidFlowSimulation.area')}</Text>
                                 <Text style={styles.resultValue}>{(area2 * 10000).toFixed(2)} cm²</Text>
                             </View>
                             <View style={styles.resultRow}>
-                                <Text style={styles.resultLabel}>Velocidad:</Text>
+                                <Text style={styles.resultLabel}>{t('fluidFlowSimulation.velocity')}</Text>
                                 <Text style={styles.resultValue}>{formatVelocity(velocity2)}</Text>
                             </View>
                             <View style={styles.resultRow}>
-                                <Text style={styles.resultLabel}>Presión:</Text>
+                                <Text style={styles.resultLabel}>{t('fluidFlowSimulation.pressure')}</Text>
                                 <Text style={styles.resultValue}>{formatPressure(pressure2)}</Text>
                             </View>
                             <View style={styles.resultRow}>
-                                <Text style={styles.resultLabel}>Altura:</Text>
+                                <Text style={styles.resultLabel}>{t('fluidFlowSimulation.height')}</Text>
                                 <Text style={styles.resultValue}>{height2} cm</Text>
                             </View>
                         </View>
                     </View>
 
                     <View style={styles.infoCard}>
-                        <Text style={styles.infoTitle}>💡 Observaciones</Text>
+                        <Text style={styles.infoTitle}>{t('fluidFlowSimulation.observations')}</Text>
                         <Text style={styles.infoText}>
-                            • Cuando el área disminuye, la velocidad aumenta (Ecuación de Continuidad)
+                            {t('fluidFlowSimulation.observation1')}
                         </Text>
                         <Text style={styles.infoText}>
-                            • Donde la velocidad aumenta, la presión disminuye (Principio de Bernoulli)
+                            {t('fluidFlowSimulation.observation2')}
                         </Text>
                         <Text style={styles.infoText}>
-                            • La energía total del fluido se conserva a lo largo del flujo
+                            {t('fluidFlowSimulation.observation3')}
                         </Text>
                     </View>
                 </View>
 
                 {/* Fórmulas */}
                 <View style={styles.formulaSection}>
-                    <Text style={styles.sectionTitle}>📐 Ecuaciones Fundamentales</Text>
+                    <Text style={styles.sectionTitle}>{t('fluidFlowSimulation.fundamentalEquations')}</Text>
                     
                     <View style={styles.formulaCard}>
-                        <Text style={styles.formulaTitle}>Ecuación de Continuidad</Text>
-                        <Text style={styles.formula}>A₁ × v₁ = A₂ × v₂ = Q</Text>
+                        <Text style={styles.formulaTitle}>{t('fluidFlowSimulation.continuityEquation')}</Text>
+                        <Text style={styles.formula}>{t('fluidFlowSimulation.continuityFormula')}</Text>
                         <Text style={styles.formulaDescription}>
-                            El caudal (Q) se mantiene constante en un flujo incompresible
+                            {t('fluidFlowSimulation.continuityDescription')}
                         </Text>
                     </View>
 
                     <View style={styles.formulaCard}>
-                        <Text style={styles.formulaTitle}>Ecuación de Bernoulli</Text>
-                        <Text style={styles.formula}>P₁ + ½ρv₁² + ρgh₁ = P₂ + ½ρv₂² + ρgh₂</Text>
+                        <Text style={styles.formulaTitle}>{t('fluidFlowSimulation.bernoulliEquation')}</Text>
+                        <Text style={styles.formula}>{t('fluidFlowSimulation.bernoulliFormula')}</Text>
                         <Text style={styles.formulaDescription}>
-                            La suma de presión estática, dinámica y potencial se conserva
+                            {t('fluidFlowSimulation.bernoulliDescription')}
                         </Text>
                     </View>
 
                     <View style={styles.formulaCard}>
-                        <Text style={styles.formulaTitle}>Caudal Volumétrico</Text>
-                        <Text style={styles.formula}>Q = A × v</Text>
+                        <Text style={styles.formulaTitle}>{t('fluidFlowSimulation.volumetricFlow')}</Text>
+                        <Text style={styles.formula}>{t('fluidFlowSimulation.volumetricFormula')}</Text>
                         <Text style={styles.formulaDescription}>
-                            Q = Caudal (m³/s), A = Área (m²), v = Velocidad (m/s)
+                            {t('fluidFlowSimulation.volumetricDescription')}
                         </Text>
                     </View>
                 </View>
